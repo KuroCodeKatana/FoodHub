@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FoodHub.ViewModels
 {
-    public class RegistrationModel
+    public class LoginViewModel
     {
         public USER_DETAILS USER_DETAILS { get; set; }
     }

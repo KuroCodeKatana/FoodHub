@@ -1,4 +1,4 @@
-﻿@model FoodHub.ViewModels.RegistrationModel
+﻿@model FoodHub.ViewModels.LoginViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,6 +9,7 @@
 }
 
 @using (Html.BeginForm("index", "Login", FormMethod.Post))
+{
     <div class="login-wrap">
         <div class="login-html">
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
@@ -18,12 +19,13 @@
                 <div class="sign-in-htm">
                     <div class="group">
                         <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
                         @Html.TextBoxFor(m => m.USER_DETAILS.USER_NAME, new { id = "USER_NAME", @class = "form-control input", maxlength = 20, @placeholder = "Username" })
                     </div>
                     <div class="group">
                         <label for="pass" class="label">Password</label>
                         <input id="pass" type="password" class="input" data-type="password">
+                        @Html.LabelFor(m=>m.USER_DETAILS.PASSWORD)
+                        @Html.PasswordFor(m => m.USER_DETAILS.PASSWORD, new { id = "PASSWORD", @class = "form-control input", maxlength = 20 })
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
@@ -72,3 +74,4 @@
             </div>
         </div>
     </div>
+}

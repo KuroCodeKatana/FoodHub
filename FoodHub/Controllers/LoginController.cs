@@ -16,10 +16,10 @@ namespace FoodHub.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(RegistrationModel rm)
-        {
-            rm.USER_DETAILS.USER_NAME = db.USER_DETAILS.
-        }
+        //[HttpPost]
+        //public ActionResult Index(LoginViewModel rm)
+        //{
+        //    rm.USER_DETAILS.USER_NAME = db.USER_DETAILS.
+        //}
     }
 }
