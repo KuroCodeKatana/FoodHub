@@ -12,32 +12,213 @@
     }
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <!-- Header Section Start -->
+    <header id="header-wrap">
+        <!-- Header Logo and Menu Start -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- start Toggle Nav For Mobiles -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
+                </div>
+
+                <!--  Start Navigation-->
+                <div class="navbar-collapse collapse" id="navigation">
+                    <!-- Top Search Start -->
+                    <ul class="right cart-search">
+                        <li class="has-form">
+                            <div id="top-search">
+                                <div class="header-search-wrap">
+                                    <div class="dropdown header-search">
+                                        <a href="#" id="search-button" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                            <i class="icon-search"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="Search-button">
+                                            <form action="" class="td-search-form" method="get" role="search">
+                                                <div class="head-form-search">
+                                                    <input id="td-header-search" class="form-control" type="text" autocomplete="off" name="s" value="" placeholder="Search">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cart">
+                            <a href="#">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Top Search End -->
+                    <!-- Start Navigation List -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="active" href="index.html">Home</a>
+                            <ul class="dropdown">
+                                <li><a class="active" href="index.html">Home 1</a></li>
+                                <li><a href="index-02.html">Home 2</a></li>
+                                <li><a href="index-03.html">Home 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li>
+                            <a href="#">Reservation</a>
+                            <ul class="dropdown">
+                                <li><a href="reservation-form-1.html">Reservation Form 1</a></li>
+                                <li><a href="reservation-form-2.html">Reservation Form 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Features</a>
+                            <ul class="dropdown">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="portfolio.html">Gallery</a></li>
+                                <li><a href="team.html">Team</a></li>
+                                <li><a href="404.html">404 Page</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">contact</a></li>
+                        <li>
+                            <a href="blog.html">Blog</a>
+                            <ul class="dropdown">
+                                <li><a href="blog.html">Page With right sidebar</a></li>
+                                <li><a href="left-sidebar.html">Page With left sidebar</a></li>
+                                <li><a href="single-post.html">Blog single post</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Menu Start -->
+                <ul class="wpb-mobile-menu">
+                    <li>
+                        <a class="active" href="index.html">Home</a>
+                        <ul class="dropdown">
+                            <li><a class="active" href="index.html">Home 1</a></li>
+                            <li><a href="index-02.html">Home 2</a></li>
+                            <li><a href="index-03.html">Home 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li>
+                        <a href="#">Reservation</a>
+                        <ul class="dropdown">
+                            <li><a href="reservation-form-1.html">Reservation Form 1</a></li>
+                            <li><a href="reservation-form-2.html">Reservation Form 2</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Features</a>
+                        <ul class="dropdown">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="portfolio.html">Gallery</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="404.html">404 Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">contact</a></li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                        <ul class="dropdown">
+                            <li><a href="blog.html">Page With right sidebar</a></li>
+                            <li><a href="left-sidebar.html">Page With left sidebar</a></li>
+                            <li><a href="single-post.html">Blog single post</a></li>
+                        </ul>
+                    </li>
                 </ul>
+                <!-- Mobile Menu End -->
             </div>
         </div>
-    </div>
+        <!-- Header Logo and Menu End -->
+
+    </header>
+    <!-- Header Section End -->
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <!-- Footer Section Start -->
+    <footer>
+        <!-- Footer area Start -->
+        <div class="footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="widget-title"><i class="fa fa-comments"></i> Contact Us</h3>
+                            <ul class="menu-useful-links">
+                                <li><i class="fa fa-home"></i> Remy Resturent</li>
+                                <li>71 George St.</li>
+                                <li>NSW, Australia</li>
+                                <li><i class="fa fa-envelope-o"></i> hello@remyresturent.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="widget-title"><i class="fa fa-university"></i> Branches</h3>
+                            <ul class="menu-useful-links">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> New South Wales, Sydney</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Victoria, Melbourne</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Western Australia, Perth</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Northern Territory, Darwin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="widget-title"><i class="fa fa-clock-o"></i> Opening Hours</h3>
+                            <ul class="menu-useful-links">
+                                <li><a href="#"><i class="fa fa-cutlery"></i> Mon-Fri 10am - 12pm</a></li>
+                                <li><a href="#"><i class="fa fa-cutlery"></i> Sat-Sun 1pm - 12pm</a></li>
+                                <li><a href="#"><i class="fa fa-cutlery"></i> Cocktails 5pm - 12pm</a></li>
+                                <li><a href="#"><i class="fa fa-cutlery"></i> BBQ 1pm - 9pm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="widget-title"><i class="fa fa-thumbs-o-up"></i> Stay Connected</h3>
+                            <div class="social-icon">
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                            </div>
+                            <form action="" class="subscribe-form">
+                                <input class="form-control" type="email" placeholder="Enter Your Email" value="" name="email">
+                                <div class="sb-button">
+                                    <i class="fa fa-massage"></i>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer area End -->
+        <!-- Copyright Start  -->
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>© Copyright 2016 Remy - Designed & Developed By <a href="http://graygrids.com">GrayGrids</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+    </footer>
+    <!-- Footer Section End -->
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

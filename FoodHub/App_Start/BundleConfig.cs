@@ -24,7 +24,17 @@ namespace FoodHub
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/assets/css/font-awesome.min.css",
+                      "~/Content/assets/fonts/iconmoon.css",
+                      "~/Content/assets/css/main.css",
+                      "~/Content/assets/extras/animate.css",
+                      "~/Content/assets/extras/owl.carousel.css",
+                      "~/Content/assets/extras/owl.theme.css",
+                      "~/Content/assets/extras/pikaday.css",
+                      "~/Content/assets/css/responsive.css",
+                      "~/Content/assets/css/slicknav.css"
+                      ));
         }
     }
 }

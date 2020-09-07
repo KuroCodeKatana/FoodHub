@@ -1,0 +1,90 @@
+#carousel-area {
+  background-color: #E9E9E9;
+  padding: 0px;
+  max-height: none;
+  overflow: visible;
+}
+#carousel-area .item {
+  background-size: 100%;
+  background-size: cover;
+  height: 765px;
+  position: relative;
+}
+#carousel-area .item:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  bottom: 0px;
+  display: block;
+}
+#carousel-area .item .carousel-caption {
+  top: 22%;
+  right: 10%;
+  left: 10%;
+}
+#carousel-area .item .carousel-caption h1 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 72px;
+  color: #fff;
+  margin: 40px;
+}
+#carousel-area .item .carousel-caption .description {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+}
+#carousel-area .item .carousel-caption .slider-content {
+  margin-bottom: 50px;
+}
+#carousel-area .item .carousel-caption .bottom-arrow p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+}
+#carousel-area .item .carousel-caption .bottom-arrow i {
+  color: #fff;
+  font-size: 30px;
+}
+.slider .owl-controls .owl-buttons div,
+.touch-slider .owl-controls .owl-buttons div {
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  margin: 0 !important;
+  padding: 5px !important;
+  background: transparent !important;
+  color: #fff !important;
+  border-radius: 0px !important;
+  opacity: 1 !important;
+  margin-top: -30px !important;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+.slider .owl-controls .owl-buttons div i,
+.touch-slider .owl-controls .owl-buttons div i {
+  font-size: 22px;
+}
+.slider .owl-controls .owl-buttons div:hover,
+.touch-slider .owl-controls .owl-buttons div:hover {
+  color: #f26522 !important;
+}
+.slider .owl-controls .owl-buttons div,
+.touch-slider .owl-controls .owl-buttons div {
+  filter: alpha(opacity=100);
+  /*IE7 fix*/
+  opacity: 1;
+}
+.touch-slider .owl-controls .owl-buttons div.owl-prev {
+  left: 50px;
+}
+.touch-slider .owl-controls .owl-buttons div.owl-next {
+  right: 50px;
+}

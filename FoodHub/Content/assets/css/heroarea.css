@@ -1,0 +1,28 @@
+.top-main {
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+.top-main .page-title-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 100%;
+}
+.top-main .page-title-wrapper .banner-wrapper {
+  vertical-align: middle;
+  position: relative;
+  display: inline-block;
+}
+.top-main .page-title-wrapper .banner-wrapper .heading {
+  font-size: 52px;
+  color: #fff;
+  margin-bottom: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.top-main .page-title-wrapper .banner-wrapper .description {
+  color: #fff;
+}

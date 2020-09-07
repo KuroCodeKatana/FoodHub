@@ -1,0 +1,426 @@
+// Preset Loader
+@import "presets.less";
+
+// Portrait tablet to landscape and desktop 
+
+@media (min-width: 768px) and (max-width: 1024px) { 
+	.navbar-default .navbar-nav li a{
+		margin-right: 12px;
+	}
+	#carousel-area .item .carousel-caption h1{
+		font-size: 36px;
+	}
+	#carousel-area .item .slider-img{
+		width: 100%;
+		height: 660px;
+	}
+	#carousel-area .item .carousel-caption{
+		top: 16%;
+	}
+	#carousel-area .item .carousel-caption .slider-content{
+		margin-bottom: 20px;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-prev{
+		left: 0;
+		top: 45%;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-next{
+		right: 0;
+		top: 45%;
+	}
+	#carousel-area .item{
+		height: 690px;
+	}
+	#about .about-wrapper .sce-title h2{
+		font-size: 30px;
+	}
+	#recipes .images-left-top{
+		display: none;
+	}
+	.images-right-bottom{
+		display: none;
+	}
+	.section-title h2{
+		font-size: 34px;
+	}
+	.about-text{
+		padding: 30px 0px;
+	}
+	.about-text h1{
+		font-size: 22px;
+		line-height: 30px;
+	}
+	#about-2 .about-content{
+		padding: 15px;
+	}
+	#about-2 .about-content .sub-title{
+		font-size: 16px;
+		line-height: 26px;
+	}
+	#cool-facts .fact-block{
+		margin-bottom: 30px;
+	}
+	#pagination{
+		margin-left: 0;
+		margin-bottom: 30px;
+	}
+	#respond{
+		margin-bottom: 30px;
+	}
+	.images-left-top{
+		display: none;
+	}
+	.team-carousel .owl-controls .owl-buttons div.owl-prev,
+	.team-carousel .owl-controls .owl-buttons div.owl-next{
+		display: none;
+	}
+	.blog-post .post{
+		width: 100%;
+	}
+	.blog-post .post-time .date-meta{
+		float: left;
+	}
+	.blog-post .post-time .meta{
+		float: left;
+	}
+	.image .icon{
+		margin-top: -70px;
+	}
+	.special-recipes .auto-container .cta{
+		padding: 28px;
+	}
+	.special-recipes .auto-container .cta h1{
+		font-size: 30px;
+		margin-bottom: 10px;
+	}
+	.special-recipes .auto-container .cta h2{
+		font-size: 16px;
+		margin-bottom: 15px;
+	}
+}
+ 
+// Landscape phone to portrait tablet 
+@media (min-width: 480px) and (max-width: 767px) {
+	#carousel-area .item .carousel-caption h1{
+		font-size: 30px;
+	}
+	#carousel-area .item .slider-img{
+		width: 100%;
+		height: 500px;
+	}
+	#carousel-area .item .carousel-caption{
+		top: 10%;
+	}
+	#carousel-area .item .carousel-caption .slider-content{
+		margin-bottom: 20px;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-prev{
+		left: 0;
+		top: 35%;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-next{
+		right: 0;
+		top: 35%;
+	}
+	#carousel-area .item{
+		height: 630px;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-prev{
+		left: 0;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-next{
+		right: 0;
+	}
+	#recipes .images-left-top{
+		display: none;
+	}
+	.images-right-bottom{
+		display: none;
+	}
+	.special-recipes .auto-container .cta h1{
+		font-size: 26px;
+	}
+	.section-title h2{
+		font-size: 30px;
+	}
+	#contact .contact-form{
+		padding: 60px 90px;
+	}
+	#contact .contact-number h3{
+		font-size: 24px;
+	}
+	#contact .contact-number h5{
+		font-size: 18px;
+	}
+	.reservation{
+		h3{
+			margin-bottom: 15px;
+		}
+		h6{
+			margin-bottom: 30px;
+		}
+	}
+	#cool-facts .fact-block{
+		margin-bottom: 30px;
+	}
+	#error-404{
+		padding: 60px 0;
+	}
+	#error-404 h3{
+		font-size: 24px;
+	}
+	#pagination{
+		margin-left: 0;
+	}
+	.lift-sidebar{
+		margin-bottom: 30px;
+	}
+	#respond{
+		margin-bottom: 30px;
+	}
+	#comments .comments-list li ul{
+		padding-left: 0;
+	}
+	.top-main .page-title-wrapper{
+		top: 40%;
+	}
+	.blog-post .post{
+		width: 100%;
+	}
+	.blog-post .post-img{
+		transform: translate(0px, 0px);
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+	}
+	.blog-post .post-time .date-meta{
+		float: left;
+	}
+	.blog-post .post-time .meta{
+		float: left;
+	}
+	.image .icon{
+		top: 30%;
+	}
+	.team-carousel .owl-controls .owl-buttons div.owl-prev,
+	.team-carousel .owl-controls .owl-buttons div.owl-next{
+		display: none;
+	}
+	#features{
+		padding: 30px 0;
+	}
+}
+
+// Landscape phones and down 
+@media (max-width: 480px) { 
+	#carousel-area .item .carousel-caption h1{
+		font-size: 20px;
+		margin: 10px;
+	}
+	#carousel-area .item .carousel-caption .description{
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+	#carousel-area .item .slider-img{
+		width: 100%;
+		height: 400px;
+	}
+	#carousel-area .item .carousel-caption{
+		top: 10%;
+	}
+	#carousel-area .item .carousel-caption .slider-content{
+		margin-bottom: 20px;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-prev{
+		left: 0;
+		top: 35%;
+	}
+	.touch-slider .owl-controls .owl-buttons div.owl-next{
+		right: 0;
+		top: 35%;
+	}
+	#carousel-area .item{
+		height: 520px;
+	}
+	#about .about-wrapper .sce-title h2{
+		font-size: 30px;
+	}
+	#about .about-wrapper .sce-title p{
+		font-size: 18px;
+	}
+	#about .about-wrapper .left-image{
+		padding-right: 15px;
+	}
+	#about-2{
+		margin-top: -130px;
+	}
+	.left-content{
+		padding-right: 15px;
+	}
+	.right-image{
+		padding-left: 15px;
+	}
+	#recipes .images-left-top{
+		display: none;
+	}
+	#recipes .item .details{
+		padding: 0px;
+		margin-top: 15px;
+	}
+	.recipes-bg{
+		padding: 15px;
+	}
+	#recipes .item{
+		margin-bottom: 15px;
+	}
+	#recipes .item .price{
+		margin-top: 0;
+	}
+	.blog-post .post-time .date-meta{
+		float: left;
+	}
+	.blog-post .post-time .meta{
+		float: left;
+	}
+	.price{
+		font-size: 30px;
+	}
+	.images-right-bottom{
+		display: none;
+	}
+	.section-title h2{
+		font-size: 22px;
+	}
+	.section-title p{
+		font-size: 15px;
+	}
+	.nav > li > a{
+		padding: 10px 3px;
+	}
+	.special-recipes .auto-container .cta{
+		padding: 20px;
+	}
+	.special-recipes .auto-container .cta h1{
+		font-size: 20px;
+	}
+	.special-recipes .auto-container .cta h2{
+		font-size: 14px;
+	}
+	#contact .contact-form{
+		padding: 15px;
+	}
+	#feedback .feedback{
+		padding: 15px;
+	}
+	.top-main .page-title-wrapper .banner-wrapper{
+		display: none;
+	}
+	.menu-item .menu-right .price{
+		top:-20px;
+	}
+	.reservation{
+		h3{
+			font-size: 20px;
+			margin-bottom: 15px;
+		}
+		h6{
+			margin-bottom: 30px;
+		}
+	}
+	.about-text{
+		padding: 40px 0px;
+	}
+	.about-text h1{
+		font-size: 18px;
+		line-height: 30px;
+	}
+	#about-2 .about-content .sub-title{
+		font-size: 16px;
+		line-height: 26px;
+	}
+	#cool-facts .fact-block{
+		margin-bottom: 30px;
+	}
+	#error-404{
+		padding: 40px 0;
+	}
+	#error-404 h1{
+		font-size: 92px;
+	}
+	#error-404 h3{
+		font-size: 20px;
+	}
+
+	.blog-post .post-content h3{
+		font-size: 16px;
+	}
+	.blog-post .quote blockquote{
+		padding: 26px 0;
+	}
+	.blog-post .quote blockquote h2{
+		font-size: 14px;
+	}
+	.blog-link .link-iocn{
+		margin-right: 0;
+	}
+	.blog-link .link-title h2{
+		font-size: 20px;
+		line-height: 20px;
+		padding: 30px 0;
+	}
+	.blog-post .post{
+		width: 100%;
+	}
+	#pagination{
+		margin-left: 0;
+	}
+	.lift-sidebar{
+		margin-bottom: 30px;
+	}
+	#respond{
+		margin-bottom: 30px;
+	}
+	#comments .comments-list li ul{
+		padding-left: 0;
+	}
+	.blog-post .post{
+		width: 100%;
+	}
+	.social-link{
+		float: left!important;
+		margin-top: 30px;
+	}
+	#cta .cta h1{
+		font-size: 20px;
+	}
+	#cta .cta h2{
+		font-size: 15px;
+	}
+	.images-left-top{
+		display: none;
+	}
+	.feature-content{
+		margin-top: 15px;
+	}
+	.feature-item h3{
+		font-size: 22px;
+	}
+	.feature-item h4{
+		font-size: 18px;
+		line-height: 26px;
+	}
+	.team-carousel .owl-controls .owl-buttons div.owl-prev,
+	.team-carousel .owl-controls .owl-buttons div.owl-next{
+		display: none;
+	}
+	.blog-post .post-img{
+		transform: translate(0px, 0px);
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+	}
+	#features{
+		padding: 15px 0;
+	}
+}
+
+
+
