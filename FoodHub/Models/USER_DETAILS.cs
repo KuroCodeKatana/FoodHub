@@ -21,12 +21,14 @@ namespace FoodHub.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Username")]
         public string USER_NAME { get; set; }
 
         [Required]
         public string EMAIL { get; set; }
 
         [Required]
+        [Display(Name ="Password")]
         public string PASSWORD { get; set; }
 
         public DateTime DOB { get; set; }
