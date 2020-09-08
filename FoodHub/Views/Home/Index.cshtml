@@ -2,30 +2,529 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-- Receipes Section Start -->
+<section id="recipes" class="general-row">
+    <div class="container">
+        <div class="section-title">
+            <h2>Discover Recipes</h2>
+            <p>Discover recipes that match your unique tastes and diet preferences</p>
+        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <!-- Floated Images -->
+        <div class="images-left-top">
+            <img src="assets/img/img-back-top1.png" alt="">
+        </div>
+        <div class="images-right-bottom">
+            <img src="assets/img/food-plate-3.png" alt="">
+        </div>
+
+        <!-- Tabs Section Start -->
+        <div id="tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                    <a data-toggle="tab" role="tab" href="#tab1">
+                        Breakfast
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" role="tab" href="#tab2">
+                        Lunch
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" role="tab" href="#tab3">
+                        Dinner
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" role="tab" href="#tab4">
+                        Lunch
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" role="tab" href="#tab5">
+                        Dessert
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab content -->
+            <div class="tab-content">
+                <div id="tab1" class="tab-pane fade in active " role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-01.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html"> Rolls And Eggs 2</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$12.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-02.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Fruity Cereal</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$17.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-03.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Chicken Alfredo</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$26.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-04.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Caffe Latte</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$21.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-05.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Swordfish Fillet</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$17.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-06.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Pasta With Truffle</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$12.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-04.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Caffe Latte</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$29.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-05.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Swordfish Fillet</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$12.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-03.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Chicken Alfredo</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$17.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-01.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html"> Rolls And Eggs</a>2</h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$25.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-06.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Pasta With Truffle</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$12.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-02.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Fruity Cereal</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$19.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab3" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-01.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html"> Rolls And Eggs</a>2</h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$34.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-02.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Fruity Cereal</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$28.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-03.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Chicken Alfredo</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$36.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-04.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Caffe Latte</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$14.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-05.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Swordfish Fillet</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$32.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-06.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Pasta With Truffle</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$24.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab4" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-04.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Caffe Latte</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$29.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-05.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Swordfish Fillet</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$12.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-03.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Chicken Alfredo</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$17.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-01.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html"> Rolls And Eggs</a>2</h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$25.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-06.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Pasta With Truffle</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$11.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-02.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Fruity Cereal</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$19.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab5" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-01.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html"> Rolls And Eggs</a>2</h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$12.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-02.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Fruity Cereal</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$26.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-03.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Chicken Alfredo</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$17.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-04.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Caffe Latte</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$30.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-05.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Swordfish Fillet</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$15.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="item">
+                                <div class="img">
+                                    <img src="assets/img/recipes/img-06.jpg" alt="">
+                                </div>
+                                <div class="details">
+                                    <h3><a href="single-item.html">Pasta With Truffle</a></h3>
+                                    <p>Lorem ipsum dolor sit amet. sed do eiusmod tempor incididunt.</p>
+                                    <a href="#" class="add-cart">Add To Cart <i class="icon-cart"></i></a>
+                                </div>
+                                <div class="price">
+                                    <span>$27.5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tab content End -->
+        </div>
+        <!-- Tabs Section End -->
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</section>
+<!-- Receipes Section End -->

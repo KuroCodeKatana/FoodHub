@@ -10,16 +10,24 @@ namespace FoodHub.Controllers
 {
     public class LoginController : Controller
     {
-        DbModel db;
+        //DbModel db;
+
         // GET: Login
         public ActionResult Index()
         {
             return View();
         }
-        //[HttpPost]
-        //public ActionResult Index(LoginViewModel rm)
-        //{
-        //    rm.USER_DETAILS.USER_NAME = db.USER_DETAILS.
-        //}
+
+        //This action is called on pressing the "Register Now" button
+        public ActionResult Register() 
+        {
+            return null;
+        }
+
+        //This function is called on pressing the "Login" button 
+        public ActionResult Login()
+        {
+            return null;
+        }
     }
 }
