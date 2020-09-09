@@ -8,7 +8,22 @@
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
 }
 
-@using (Html.BeginForm("index", "Login", FormMethod.Post))
+
+<script>
+    function Signin(btnid) {
+        debugger;
+        if (btnid == "LOGIN") {
+            $("#form1").attr('action', 'Login1');
+            $("#form1").submit();
+        }
+        else {
+            $("#form1").attr('action', 'Register');
+            $("#form1").submit();
+        }
+    }
+</script>
+
+@using (Html.BeginForm("", "Login", FormMethod.Post, new { id = "form1", enctype = "multipart/form-data" }))
 {
     <div class="login-wrap">
         <div class="login-html">
@@ -18,19 +33,19 @@
             <div class="login-form">
                 <div class="sign-in-htm">
                     <div class="group">
-                        @Html.LabelFor(m => m.USER_DETAILS.USER_NAME, new { @class = "label" })
-                        @Html.TextBoxFor(m => m.USER_DETAILS.USER_NAME, new { id = "USER_NAME", @class = "form-control input", maxlength = 20, @placeholder = "Username" })
+                        @Html.LabelFor(m => m.USER_NAME, new { @class = "label" })
+                        @Html.TextBoxFor(m => m.USER_NAME, new { id = "USER_NAME", @class = "form-control input", maxlength = 20, @placeholder = "Username" })
                     </div>
                     <div class="group">
-                        @Html.LabelFor(m => m.USER_DETAILS.PASSWORD, new { @class = "label" })
-                        @Html.PasswordFor(m => m.USER_DETAILS.PASSWORD, new { id = "PASSWORD", @class = "form-control input", maxlength = 32 })
+                        @Html.LabelFor(m => m.PASSWORD, new { @class = "label" })
+                        @Html.PasswordFor(m => m.PASSWORD, new { id = "PASSWORD", @class = "form-control input", maxlength = 32 })
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
                         <label for="check"><span class="icon"></span> Keep me Signed in</label>
                     </div>
                     <div class="group">
-                        <input type="submit" class="button" value="Login">
+                        <input type="button" class="button" value="Login" onclick="Signin('LOGIN')">
                     </div>
                     <div class="hr"></div>
                     <div class="foot-lnk">
@@ -45,7 +60,7 @@
 
                     <div class="group">
                         @Html.LabelFor(m => m.USER_DETAILS.EMAIL, new { @class = "label" })
-                        @Html.TextBoxFor(m => m.USER_DETAILS.EMAIL, new { id = "EMAIL", @class = "form-control input", @placeholder="Email" })
+                        @Html.TextBoxFor(m => m.USER_DETAILS.EMAIL, new { id = "EMAIL", @class = "form-control input", @placeholder = "Email" })
                     </div>
 
                     <div class="group">
