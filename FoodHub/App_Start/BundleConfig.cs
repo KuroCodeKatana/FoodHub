@@ -24,7 +24,6 @@ namespace FoodHub
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/assets/css/font-awesome.min.css",
                       "~/Content/assets/fonts/iconmoon.css",
                       "~/Content/assets/css/main.css",
@@ -35,6 +34,17 @@ namespace FoodHub
                       "~/Content/assets/css/responsive.css",
                       "~/Content/assets/css/slicknav.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/admin").Include(
+                   "~/Content/Admin/css/googlefont.css",
+                    "~/Content/Admin/vendor/fontawesome-free/css/all.min.css",
+                   "~/Content/Admin/css/sb-admin-2.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                "~/Content/Admin/vendor/jquery/jquery.min.js",
+                 "~/Content/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js",
+                   "~/Content/Admin/vendor/jquery-easing/jquery.easing.min.js",
+                   "~/Content/Admin/js/sb-admin-2.min.js"));
         }
     }
 }
