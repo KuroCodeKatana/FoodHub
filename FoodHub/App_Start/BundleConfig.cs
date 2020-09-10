@@ -47,6 +47,8 @@ namespace FoodHub
                    "~/Content/Admin/js/sb-admin-2.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/remy").Include(
+                "~/Content/assets/js/jquery-min.js",
+                "~/Content/assets/js/bootstrap.min.js",
                 "~/Content/assets/js/jquery.parallax.js",
                  "~/Content/assets/js/jquery.slicknav.js",
                    "~/Content/assets/js/owl.carousel.min.js",
@@ -55,7 +57,8 @@ namespace FoodHub
                    "~/Content/assets/js/jquery.counterup.min.js",
                    "~/Content/assets/js/waypoints.min.js",
                    "~/Content/assets/js/form-validator.min.js",
-                   "~/Content/assets/js/contact-form-script.js"));
+                   "~/Content/assets/js/contact-form-script.js",
+                   "~/Content/assets/js/pikaday.js"));
 
         }
     }

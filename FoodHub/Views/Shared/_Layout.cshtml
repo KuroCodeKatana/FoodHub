@@ -227,9 +227,31 @@
         <i class="fa fa-angle-up"></i>
     </a>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/bundles/remy")
+    <script>
+        var dateToday = new Date();
+        var picker = new Pikaday(
+            {
+                field: document.getElementById('datepicker'),
+                onSelect: date => {
+                    const year = date.getFullYear(),
+                        month = date.getMonth() + 1,
+                        day = date.getDate(),
+                        formattedDate = [
+                            year,
+                            month < 10 ? '0' + month : month,
+                            day < 10 ? '0' + day : day
+                        ].join('-')
+                    document.getElementById('datepicker').value = formattedDate
+                },
+                firstDay: 0,
+                minDate: dateToday,
+                maxDate: new Date(2020, 12, 31),
+                yearRange: [2000, 2020]
+            });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
