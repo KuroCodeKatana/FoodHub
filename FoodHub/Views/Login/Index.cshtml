@@ -11,19 +11,18 @@
 
 <script>
     function Signin(btnid) {
-        debugger;
         if (btnid == "LOGIN") {
-            $("#form1").attr('action', 'Login1');
+            $("#form1").attr('action', '/Login/Signup');
             $("#form1").submit();
         }
         else {
-            $("#form1").attr('action', 'Register');
+            $("#form1").attr('action', '/Login/Register');
             $("#form1").submit();
         }
     }
 </script>
 
-@using (Html.BeginForm("", "Login", FormMethod.Post, new { id = "form1", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Signup", "Login", FormMethod.Post, new { id = "form1", enctype = "multipart/form-data" }))
 {
     <div class="login-wrap">
         <div class="login-html">

@@ -37,7 +37,7 @@ namespace FoodHub.Controllers
         }
 
         //This function is called on pressing the "Login" button 
-        public ActionResult Login1(LoginViewModel VE)
+        public ActionResult Signup(LoginViewModel VE)
         {
             try
             {
