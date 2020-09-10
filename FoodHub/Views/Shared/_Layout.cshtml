@@ -61,14 +61,14 @@
                     <!-- Start Navigation List -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a class="active" href="index.html">Home</a>
+                            <a href="index.html">Home</a>
                             <ul class="dropdown">
-                                <li><a class="active" href="index.html">Home 1</a></li>
+                                <li><a href="index.html">Home 1</a></li>
                                 <li><a href="index-02.html">Home 2</a></li>
                                 <li><a href="index-03.html">Home 3</a></li>
                             </ul>
                         </li>
-                        <li><a href="menu.html">Menu</a></li>
+                        <li><a class="active" href="menu.html">Menu</a></li>
                         <li>
                             <a href="#">Reservation</a>
                             <ul class="dropdown">
@@ -100,14 +100,14 @@
                 <!-- Mobile Menu Start -->
                 <ul class="wpb-mobile-menu">
                     <li>
-                        <a class="active" href="index.html">Home</a>
+                        <a href="index.html">Home</a>
                         <ul class="dropdown">
-                            <li><a class="active" href="index.html">Home 1</a></li>
+                            <li><a href="index.html">Home 1</a></li>
                             <li><a href="index-02.html">Home 2</a></li>
                             <li><a href="index-03.html">Home 3</a></li>
                         </ul>
                     </li>
-                    <li><a href="menu.html">Menu</a></li>
+                    <li><a class="active" href="menu.html">Menu</a></li>
                     <li>
                         <a href="#">Reservation</a>
                         <ul class="dropdown">
@@ -141,9 +141,13 @@
 
     </header>
     <!-- Header Section End -->
-    <div class="container body-content">
-        @RenderBody()
+    <!-- Page Section Start -->
+    <div class="page-container">
+        <div>
+            @RenderBody()
+        </div>
     </div>
+    <!-- Page Section End -->
     <!-- Footer Section Start -->
     <footer>
         <!-- Footer area Start -->
@@ -218,9 +222,14 @@
         <!-- Copyright End -->
     </footer>
     <!-- Footer Section End -->
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/remy")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -45,6 +45,18 @@ namespace FoodHub
                  "~/Content/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js",
                    "~/Content/Admin/vendor/jquery-easing/jquery.easing.min.js",
                    "~/Content/Admin/js/sb-admin-2.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/remy").Include(
+                "~/Content/assets/js/jquery.parallax.js",
+                 "~/Content/assets/js/jquery.slicknav.js",
+                   "~/Content/assets/js/owl.carousel.min.js",
+                   "~/Content/assets/js/main.js",
+                   "~/Content/assets/js/smooth-scroll.js",
+                   "~/Content/assets/js/jquery.counterup.min.js",
+                   "~/Content/assets/js/waypoints.min.js",
+                   "~/Content/assets/js/form-validator.min.js",
+                   "~/Content/assets/js/contact-form-script.js"));
+
         }
     }
 }
