@@ -15,9 +15,11 @@ namespace FoodHub.Models
         public virtual DbSet<CART> CARTs { get; set; }
         public virtual DbSet<CART_ITEM> CART_ITEM { get; set; }
         public virtual DbSet<CATEGORY> CATEGORies { get; set; }
+        public virtual DbSet<CITY> CITies { get; set; }
         public virtual DbSet<FEEDBACK> FEEDBACKs { get; set; }
         public virtual DbSet<ITEM> ITEMs { get; set; }
         public virtual DbSet<ORDER> ORDERs { get; set; }
+        public virtual DbSet<STATE> STATEs { get; set; }
         public virtual DbSet<USER_DETAILS> USER_DETAILS { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -52,6 +54,10 @@ namespace FoodHub.Models
                 .HasMany(e => e.ITEMs)
                 .WithRequired(e => e.CATEGORY)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CITY>()
+                .Property(e => e.CITY_NAME)
+                .IsUnicode(false);
 
             modelBuilder.Entity<ITEM>()
                 .Property(e => e.ITEM_NM)
@@ -97,6 +103,15 @@ namespace FoodHub.Models
             modelBuilder.Entity<ORDER>()
                 .HasMany(e => e.FEEDBACKs)
                 .WithRequired(e => e.ORDER)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<STATE>()
+                .Property(e => e.STATE_NAME)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<STATE>()
+                .HasMany(e => e.CITies)
+                .WithRequired(e => e.STATE)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<USER_DETAILS>()

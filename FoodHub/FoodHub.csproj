@@ -137,10 +137,12 @@
     <Compile Include="Models\CART.cs" />
     <Compile Include="Models\CART_ITEM.cs" />
     <Compile Include="Models\CATEGORY.cs" />
+    <Compile Include="Models\CITY.cs" />
     <Compile Include="Models\DbModel.cs" />
     <Compile Include="Models\FEEDBACK.cs" />
     <Compile Include="Models\ITEM.cs" />
     <Compile Include="Models\ORDER.cs" />
+    <Compile Include="Models\STATE.cs" />
     <Compile Include="Models\USER_DETAILS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
