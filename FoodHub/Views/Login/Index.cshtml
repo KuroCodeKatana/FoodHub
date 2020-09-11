@@ -88,15 +88,19 @@
                     </div>
                     <div class="group">
                         <label for="user" class="label">City</label>
-                        @Html.TextBoxFor(m => m.USER_DETAILS.CITY, new { id = "CITY", @class = "form-control input", maxlength = 20, @placeholder = "City" })
-                    </div>
+                        <select id="dbcity" class="form-control">
+                            <option value="-1">Select City</option>
+                        </select>
+               </div>
                     <div class="group">
                         <label for="user" class="label">Pin</label>
                         @Html.TextBoxFor(m => m.USER_DETAILS.PIN, new { id = "PIN", @class = "form-control input", maxlength = 20, @placeholder = "Pin" })
                     </div>
                     <div class="group">
-                        <label for="user" class="label">State</label>
-                        @Html.TextBoxFor(m => m.USER_DETAILS.STATE, new { id = "STATE", @class = "form-control input", maxlength = 20, @placeholder = "State" })
+                        <label for="user" class="label">Select State</label>
+                       <select id="dbstate" class="form-control">
+                           <option value="-1">Select State</option>
+                       </select>
                     </div>
                     <div class="group">
                         <label for="user" class="label">User_type</label>
@@ -118,6 +122,38 @@
                     <div class="foot-lnk">
                         <label for="tab-1">Already Member?</label>
                     </div>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            BindStatelist();
+                        });
+                            function BindStatelist() {
+                                $.ajax({
+                                    type: "POST",
+                                    url: '@Url.Action("GetState", "LoginController")',
+                                    contentType: "application/json;charset=utf-8",
+                                    async: false,
+                                    catch: false,
+                                    dataType: "json",
+                                    success: function (data) {
+                                        $.each(data, function (index, value) {
+                                            $("#dbstate").append('<option value="' + value.STATE_ID +'"> +value.STATE_NAME+</option>')
+                                        }); 
+
+                                    };
+                                });
+                        }
+                        $(document).on('change', '#dbstate', function () {
+                            var STATE_ID = $(this).val();
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("GetCity", "LoginController")',
+                                data: JSON.stringify{(_STATE_ID: STATE_ID)},
+                            contentType: 
+                            })
+
+                        });
+                            
+                    </script>
                 </div>
             </div>
         </div>

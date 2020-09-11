@@ -61,5 +61,11 @@ namespace FoodHub.Controllers
             }
             
         }
+
+        public JsonResult GetState()
+        {
+            var Q = (from test in db.STATEs select new { test.STATE_ID, test.STATE_NAME }).ToList();
+            return Json(Q, JsonRequestBehavior.AllowGet);
+        }
     }
 }
