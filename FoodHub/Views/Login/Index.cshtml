@@ -78,7 +78,39 @@
                         <input type="text" name="startDate" value="" id="datepicker" class="form-control" data-dateformat="dd/mm/yy" placeholder="Date">
                         @*@Html.TextBoxFor(m => m.USER_DETAILS.DOB, new { id = "datepicker", @class = "form-control input ", @dateformat = "dd/mm/yy" })*@
                     </div>
+                    <div class="group">
+                        <label for="user" class="label">Contact_no</label>
+                        @Html.TextBoxFor(m => m.USER_DETAILS.CONTACT_NO, new { id = "CONTACT_NO", @class = "form-control input", maxlength = 20, @placeholder = "Contact_no" })
+                    </div>
+                    <div class="group">
+                        <label for="user" class="label">Address</label>
+                        @Html.TextBoxFor(m => m.USER_DETAILS.ADDRESS, new { id = "ADDRESS", @class = "form-control input", maxlength = 20, @placeholder = "Address" })
+                    </div>
+                    <div class="group">
+                        <label for="user" class="label">City</label>
+                        @Html.TextBoxFor(m => m.USER_DETAILS.CITY, new { id = "CITY", @class = "form-control input", maxlength = 20, @placeholder = "City" })
+                    </div>
+                    <div class="group">
+                        <label for="user" class="label">Pin</label>
+                        @Html.TextBoxFor(m => m.USER_DETAILS.PIN, new { id = "PIN", @class = "form-control input", maxlength = 20, @placeholder = "Pin" })
+                    </div>
+                    <div class="group">
+                        <label for="user" class="label">State</label>
+                        @Html.TextBoxFor(m => m.USER_DETAILS.STATE, new { id = "STATE", @class = "form-control input", maxlength = 20, @placeholder = "State" })
+                    </div>
+                    <div class="group">
+                        <label for="user" class="label">User_type</label>
+                        <select id="dbtype" class="form-control" />
+                        <option value="-1">Select User Type</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Customer">Customer</option>
+                    </div>
 
+                    <div class="group">
+                        <label for="user" class="label">Gender</label>
+                        <input type="radio" name="Gender" value="M" />M
+                        <input type="radio" name="Gender" value="F" />F
+                    </div>
                     <div class="group">
                         <input type="submit" class="button" value="Register Now">
                     </div>
