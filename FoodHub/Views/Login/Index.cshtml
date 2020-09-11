@@ -126,7 +126,8 @@
                         $(document).ready(function () {
                             BindStatelist();
                         });
-                            function BindStatelist() {
+                        function BindStatelist() {
+             
                                 $.ajax({
                                     type: "POST",
                                     url: '@Url.Action("GetState", "LoginController")',
