@@ -140,7 +140,10 @@
                                             $("#dbstate").append('<option value="' + value.STATE_ID +'"> +value.STATE_NAME+</option>')
                                         }); 
 
-                                    };
+                                    },
+                                    error: function (error) {
+                                        console.log(error);
+                                    }
                                 });
                         }
                         $(document).on('change', '#dbstate', function () {
@@ -149,7 +152,19 @@
                                 type: "POST",
                                 url: '@Url.Action("GetCity", "LoginController")',
                                 data: JSON.stringify{(_STATE_ID: STATE_ID)},
-                            contentType: 
+                            contentType: "application/json;charset=utf-8",
+                            async: false,
+                             catch: false,
+                            dataType: "json",
+                            success: function(data) {
+                                $("#dbstate").empty();
+                                $.each(data, function (index, value) {
+                                    $("#dbstate").append('<option value="' + value.CITY_ID +'">+value.CITY_NAME+</option>')
+                                });
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
                             })
 
                         });
