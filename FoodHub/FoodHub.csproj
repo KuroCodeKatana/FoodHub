@@ -2183,6 +2183,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\testadmin\testadmin.cshtml" />
     <Content Include="Views\Shared\_Admin_Layout.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
