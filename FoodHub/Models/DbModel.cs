@@ -12,14 +12,14 @@ namespace FoodHub.Models
         {
         }
 
-        public virtual DbSet<CART> CARTs { get; set; }
+        public virtual DbSet<CART> CART { get; set; }
         public virtual DbSet<CART_ITEM> CART_ITEM { get; set; }
-        public virtual DbSet<CATEGORY> CATEGORies { get; set; }
-        public virtual DbSet<CITY> CITies { get; set; }
-        public virtual DbSet<FEEDBACK> FEEDBACKs { get; set; }
-        public virtual DbSet<ITEM> ITEMs { get; set; }
-        public virtual DbSet<ORDER> ORDERs { get; set; }
-        public virtual DbSet<STATE> STATEs { get; set; }
+        public virtual DbSet<CATEGORY> CATEGORY { get; set; }
+        public virtual DbSet<CITY> CITY { get; set; }
+        public virtual DbSet<FEEDBACK> FEEDBACK { get; set; }
+        public virtual DbSet<ITEM> ITEM { get; set; }
+        public virtual DbSet<ORDER> ORDER { get; set; }
+        public virtual DbSet<STATE> STATE { get; set; }
         public virtual DbSet<USER_DETAILS> USER_DETAILS { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

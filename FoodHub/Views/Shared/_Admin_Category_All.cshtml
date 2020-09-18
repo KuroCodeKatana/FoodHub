@@ -1,0 +1,42 @@
+﻿@model FoodHub.ViewModels.CategoryEntry
+@if (Model.CATEGORYLIST != null)
+{
+    <table id="TblCategory" class="table table-striped">
+        <tr>
+            <th>SL No.</th>
+            <th>Category Name</th>
+            <th>Category Desc.</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var Q in Model.CATEGORYLIST)
+        {
+            <tr>
+                <td>
+                    @Q.SLNO
+                    <input type="hidden" value="@Q.CATE_CD" />
+                </td>
+                <td>@Q.CATE_NM</td>
+                <td>@Q.CATE_DESC</td>
+                <td>
+                    <a href="#" id="Btnedit" class="btn btn-info btn-icon-split" dataid="@Q.CATE_CD" title="EDIT">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                        <span class="text">Edit</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" id="Btndel" class="btn btn-danger btn-icon-split" dataid="@Q.CATE_CD" title="DELETE">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text">Delete</span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+

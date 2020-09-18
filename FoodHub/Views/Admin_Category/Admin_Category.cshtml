@@ -1,0 +1,176 @@
+﻿@model FoodHub.ViewModels.CategoryEntry
+@{
+    ViewBag.Title = "Item Category";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#AddData").hide();
+    });
+    function ShowAddDiv() {
+        debugger;
+        $("#AllData").hide();
+        $("#AddData").show();
+        $("#Btnsave").show();
+        $("#Btnupdate").hide();
+        $("#CATE_CD").val("");
+        $("#CATE_NM").val("");
+        $("#CATE_DESC").val("");
+    }
+    function ShowEditDiv() {
+        debugger;
+        $("#AddData").hide();
+        $("#AllData").show();
+        $("#Btndel").prop('disables', true);
+        $("#Btnedit").prop('disables', false);
+    }
+    function ShowDelDiv() {
+        debugger;
+        $("#AddData").hide();
+        $("#AllData").show();
+        $("#Btndel").prop('disables', true);
+        $("#Btnedit").prop('disables', false);
+    }
+    $(document).on('click', '#Btnsave', function () {
+        if ($("#CATE_NM").val() == "") {
+            alert("Enter Category Name !!");
+            return false;
+        }
+        if ($("#CATE_DESC").val() == "") {
+            alert("Enter Category Description!");
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Save", "Admin_Category")',
+            data: $('form').serialize(),
+            datatype: JSON,
+            success: function (data) {
+                if (data == "Success") {
+                    alert("Save Successfull");
+                    location.reload();
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+    $(document).on('click', '#Btnedit', function () {
+        debugger;
+        var Cide = $(this).attr("dataid");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetCategory", "Admin_Category")',
+            data: { "CateCode": Cide },
+            datatype: JSON,
+            success: function (data) {
+                //$("#AddData").attr("class", "");
+                //$("#AddData").attr("class", "tab-pane fade in active");
+                $("#CATE_CD").val(data.CATE_CD);
+                $("#CATE_NM").val(data.CATE_NM);
+                $("#CATE_DESC").val(data.CATE_DESC);
+                $("#Btnsave").hide();
+                $("#Btnupdate").show();
+                $("#AddData").show();
+            },
+            error: function () {
+                alert("Error!!");
+            }
+        });
+    });
+    $(document).on('click', '#Btnupdate', function () {
+        if ($("#CATE_NM").val() == "") {
+            alert("Enter Category Name !!");
+            return false;
+        }
+        if ($("#CATE_DESC").val() == "") {
+            alert("Enter Category Description!");
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Update", "Admin_Category")',
+            data: $('form').serialize(),
+            datatype: JSON,
+            success: function (data) {
+                if (data == "Success") {
+                    alert("Update Successfull");
+                    location.reload();
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+    $(document).on('click', '#Btndel', function () {
+        var Ide = $(this).attr("dataid");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("DeleteUser", "Admin_Category")',
+            data: { "CateCode": Ide },
+            datatype: JSON,
+            success: function (data) {
+                if (data == "Success") {
+                    alert("Record Delete Successfull");
+                    window.location.reload();
+                }
+            },
+            error: function () {
+                alert("Error!!");
+            }
+        });
+    });
+</script>
+@using (Html.BeginForm("Admin_Category", "Admin_Category", FormMethod.Post))
+{
+    <div class="form-horizontal" style="padding-left:5px;padding-right:5px;margin-top: -20px;">
+        <div id="AllData">
+            @Html.Partial("_Admin_Category_All")
+        </div>
+        <div id="AddData" style="display:none;">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="h5 mb-2 text-gray-800">Code:</label>
+                    @Html.TextBoxFor(m => m.CATEGORY.CATE_CD, new { id = "CATE_CD", @class = "form-control input", @placeholder = "Code", @readonly = "readonly", tabindex="-1" })
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="h5 mb-2 text-gray-800">Name:</label>
+                    @Html.TextBoxFor(m => m.CATEGORY.CATE_NM, new { id = "CATE_NM", @class = "form-control input", @placeholder = "Name" , autocomplete="off" })
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label class="h5 mb-2 text-gray-800">Description:</label>
+                    @Html.TextBoxFor(m => m.CATEGORY.CATE_DESC, new { id = "CATE_DESC", @class = "form-control input", @placeholder = "Description", autocomplete = "off" })
+                </div>
+            </div>
+            <div class="col-md-8">
+                <a href="#" id="Btnsave" class="btn btn-success btn-icon-split" title="SAVE">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Save</span>
+                </a>
+                <a href="#" id="Btnupdate" class="btn btn-success btn-icon-split" style="display:none" title="UPDATE">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Update</span>
+                </a>
+            </div>
+        </div>
+    </div>
+}
