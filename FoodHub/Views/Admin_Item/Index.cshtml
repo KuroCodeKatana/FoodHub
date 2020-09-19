@@ -37,19 +37,40 @@
         $("#Btndel").prop('disables', true);
         $("#Btnedit").prop('disables', false);
     }
-    $(document).on('click', '#Btnsave', function () {
-        if ($("#ITEM_CD").val() == "") {
-            alert("Enter Item Code !!");
-            return false;
-        }
+    $(document).on('click', '#Btnsave', function () 
+        {
         if ($("#ITEM_NM").val() == "") {
             alert("Enter Item Name!");
+            return false;
+        }
+        if ($("#ITEM_DESC").val() == "") {
+            alert("Enter Item Description!");
+            return false;
+        }
+        if ($("#IMG").val() == "") {
+            alert("Enter Item Image!");
+            return false;
+        }
+        if ($("#PRICE").val() == "") {
+            alert("Enter Item Price !");
+            return false;
+        }
+        if ($("#STATUS").val() == "") {
+            alert("Enter Item Status!");
+            return false;
+        }
+        if ($("#CATE_CD").val() == "") {
+            alert("Enter Category Code!");
+            return false;
+        }
+        if ($("#ITEM_TYPE").val() == "") {
+            alert("Enter Item Type!");
             return false;
         }
 
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Save", "Admin_Category")',
+            url: '@Url.Action("Save", "Admin_Item")',
             data: $('form').serialize(),
             datatype: JSON,
             success: function (data) {
@@ -68,18 +89,23 @@
     });
     $(document).on('click', '#Btnedit', function () {
         debugger;
-        var Cide = $(this).attr("dataid");
+        var Iide = $(this).attr("dataid");
         $.ajax({
             type: "POST",
-            url: '@Url.Action("GetCategory", "Admin_Category")',
-            data: { "CateCode": Cide },
+            url: '@Url.Action("GetItem", "Admin_Item")',
+            data: { "ItemCode": Iide },
             datatype: JSON,
             success: function (data) {
                 //$("#AddData").attr("class", "");
                 //$("#AddData").attr("class", "tab-pane fade in active");
+                $("#ITEM_CD").val(data.ITEM_CD);
+                $("#ITEM_NM").val(data.ITEM_NM);
+                $("#ITEM_DESC").val(data.ITEM_DESC);
+                $("#IMG").val(data.IMG);
+                $("#PRICE").val(data.PRICE);
+                $("#STATUS").val(data.STATUS);
                 $("#CATE_CD").val(data.CATE_CD);
-                $("#CATE_NM").val(data.CATE_NM);
-                $("#CATE_DESC").val(data.CATE_DESC);
+                $("#ITEM_TYPE").val(data.ITEM_TYPE);
                 $("#Btnsave").hide();
                 $("#Btnupdate").show();
                 $("#AddData").show();
@@ -90,18 +116,42 @@
         });
     });
     $(document).on('click', '#Btnupdate', function () {
-        if ($("#CATE_NM").val() == "") {
-            alert("Enter Category Name !!");
+        if ($("#ITEM_CD").val() == "") {
+            alert("Enter Item Code !!");
             return false;
         }
-        if ($("#CATE_DESC").val() == "") {
-            alert("Enter Category Description!");
+        if ($("#ITEM_NM").val() == "") {
+            alert("Enter Item Name!");
+            return false;
+        }
+        if ($("#ITEM_DESC").val() == "") {
+            alert("Enter Item Description!");
+            return false;
+        }
+        if ($("#IMG").val() == "") {
+            alert("Enter Item Image!");
+            return false;
+        }
+        if ($("#PRICE").val() == "") {
+            alert("Enter Item Price !");
+            return false;
+        }
+        if ($("#STATUS").val() == "") {
+            alert("Enter Item Status!");
+            return false;
+        }
+        if ($("#CATE_CD").val() == "") {
+            alert("Enter Category Code!");
+            return false;
+        }
+        if ($("#ITEM_TYPE").val() == "") {
+            alert("Enter Item Type!");
             return false;
         }
 
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Update", "Admin_Category")',
+            url: '@Url.Action("Update", "Admin_Item")',
             data: $('form').serialize(),
             datatype: JSON,
             success: function (data) {
@@ -122,8 +172,8 @@
         var Ide = $(this).attr("dataid");
         $.ajax({
             type: "POST",
-            url: '@Url.Action("DeleteUser", "Admin_Category")',
-            data: { "CateCode": Ide },
+            url: '@Url.Action("DeleteUser", "Admin_Item")',
+            data: { "ItemCode": Ide },
             datatype: JSON,
             success: function (data) {
                 if (data == "Success") {
