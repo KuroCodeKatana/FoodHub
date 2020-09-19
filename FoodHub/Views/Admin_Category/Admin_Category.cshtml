@@ -3,7 +3,6 @@
     ViewBag.Title = "Item Category";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
-@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#AddData").hide();
@@ -70,8 +69,6 @@
             data: { "CateCode": Cide },
             datatype: JSON,
             success: function (data) {
-                //$("#AddData").attr("class", "");
-                //$("#AddData").attr("class", "tab-pane fade in active");
                 $("#CATE_CD").val(data.CATE_CD);
                 $("#CATE_NM").val(data.CATE_NM);
                 $("#CATE_DESC").val(data.CATE_DESC);
@@ -166,7 +163,7 @@
                 </a>
                 <a href="#" id="Btnupdate" class="btn btn-success btn-icon-split" style="display:none" title="UPDATE">
                     <span class="icon text-white-50">
-                        <i class="fas fa-check"></i>
+                        <i class="fas fa-pencil-alt"></i>
                     </span>
                     <span class="text">Update</span>
                 </a>
