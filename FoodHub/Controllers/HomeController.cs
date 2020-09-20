@@ -17,6 +17,10 @@ namespace FoodHub.Controllers
         {
             return View();
         }
+        public ActionResult Contact()
+        {
+            return View();
+        }
 
     }
 }

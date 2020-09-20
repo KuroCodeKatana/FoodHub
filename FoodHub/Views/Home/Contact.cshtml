@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="feedback text-center">
+                    <div class="section-title">
+                        <h2>Send Your Feedback</h2>
+                        <p>We're always here to hear from you</p>
+                    </div>
+
+                    <!-- Start Contact Form -->
+                    <form role="form" id="contactForm" class="contact-form" data-toggle="validator" class="shake">
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="text" id="name" class="form-control" placeholder="Name" required data-error="Please enter your name">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="email" class="email form-control" id="email" placeholder="Email" required data-error="Please enter your email">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="text" id="msg_subject" class="form-control" placeholder="Subject" required data-error="Please enter your message subject">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <textarea id="message" rows="7" placeholder="Massage" class="form-control" required data-error="Write your message"></textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit" class="btn btn-common btn-sn"></i> Send Message</button>
+                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                        <div class="clearfix"></div>
+
+                    </form>
+                    <!-- End Contact Form -->
+                </div>
+            </div>
+     </div>
+        </div>
+
+
+ 

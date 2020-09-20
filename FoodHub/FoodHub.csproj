@@ -2192,6 +2192,7 @@
     <Content Include="Views\Shared\_Admin_Category_All.cshtml" />
     <Content Include="Views\Admin_Item\Index.cshtml" />
     <Content Include="Views\Shared\_Admin_Item_All.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
