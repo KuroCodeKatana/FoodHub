@@ -37,8 +37,7 @@
         $("#Btndel").prop('disables', true);
         $("#Btnedit").prop('disables', false);
     }
-    $(document).on('click', '#Btnsave', function () 
-        {
+    $(document).on('click', '#Btnsave', function () {
         if ($("#ITEM_NM").val() == "") {
             alert("Enter Item Name!");
             return false;
@@ -187,6 +186,88 @@
         });
     });
 </script>
+<script>
+    function numericOnly(elementRef, position) {
+        var TAG = document.getSelection().toString() === elementRef.value;
+        if (TAG == true && elementRef.readOnly == false) {
+            elementRef.value = null;
+        }
+        var keyCodeEntered = (event.which) ? event.which : (window.event.keyCode) ? window.event.keyCode : -1;
+        if ((keyCodeEntered >= 48) && (keyCodeEntered <= 57)) {
+            if ((elementRef.value) && (elementRef.value.indexOf('.') >= 0)) {
+                var aa = elementRef.value;
+                var ab = aa.indexOf('.');
+                var ac = aa.toString().substring(ab);
+                if (ac.length <= position) {
+                    return true;
+                }
+                else if (elementRef.selectionStart <= ab) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        }
+            // '.' decimal point...
+        else if (keyCodeEntered == 46) {
+            // Allow only 1 decimal point ('.')...
+            if ((elementRef.value) && (elementRef.value.indexOf('.') >= 0)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>
+<script>
+    function imgpreview(id) {
+        debugger;
+        var documentsrc = document.getElementById(id).src;
+        var catgr = documentsrc.search('image');
+        HTMLCode = "<HTML><HEAD><title>Document/Image Viewer</title>";
+        HTMLCode = HTMLCode + "</HEAD><BODY TOPMARGIN=0 LEFTMARGIN=0 MARGINHEIGHT=0 MARGINWIDTH=0 style='background-color:rgba(0, 0, 0, 0.56)'><CENTER>";
+
+
+        HTMLCode = HTMLCode + "<IMG name='uploadimage' src='" + documentsrc + "' BORDER=0 NAME=FullImage  ";
+        HTMLCode = HTMLCode + " STYLE='WIDTH: max-content; height: max-content; MAX-WIDTH:-webkit-fill-available;MAX-HEIGHT:-webkit-fill-available;' >";
+
+        HTMLCode = HTMLCode + "</CENTER></BODY></HTML>";
+
+        mywindow = window.open('', 'image', 'toolbar=0,location=0,menuBar=0,top = 30, left = 100,scrollbars=0,resizable=0,width=1160,height=600');
+
+        mywindow.document.open();
+        mywindow.document.write(HTMLCode);
+        mywindow.document.close();
+    }
+</script>
+<script>
+    function fileCheck(id) {
+        debugger;
+        var fileUpload = $(id).get(0);
+        var filesSelected = fileUpload.files;
+        if (filesSelected.length > 0) {
+            var fileToLoad = filesSelected[0];
+            var fname = document.getElementById("IMG");
+            fname.value = fileToLoad.name;
+            var fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                var textAreaFileContents = document.getElementById("IMG_FILE");
+
+                textAreaFileContents.value = fileLoadedEvent.target.result;
+
+                $('#img1').attr('src', '');
+                $("#img").attr('src', fileLoadedEvent.target.result);
+                $("#img1").css("display", "none");
+                $("#img").css("display", "block");
+            };
+            fileReader.readAsDataURL(fileToLoad);
+        }
+    }
+</script>
 @using (Html.BeginForm("Index", "Admin_Item", FormMethod.Post))
 {
     <div class="form-horizontal" style="padding-left:5px;padding-right:5px;margin-top: -20px;">
@@ -212,40 +293,65 @@
                     @Html.TextBoxFor(m => m.ITEM.ITEM_DESC, new { id = "ITEM_DESC", @class = "form-control input", @placeholder = "Description", autocomplete = "off" })
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-lg-12">
                 <div class="form-group">
                     <label class="h5 mb-2 text-gray-800">Image:</label>
-                    @Html.TextBoxFor(m => m.ITEM.IMG, new { id = "IMG", @class = "form-control input", @placeholder = "Image", autocomplete = "off" })
+                    <div class="col-md-6">
+                        <div class="editor-field" style="margin-top: 4px;">
+                            <input type="file" class="form-control" id="ImageData" name="ImageData" accept=".png, .jpg, .jpeg" onchange="fileCheck(this);" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.HiddenFor(model => model.IMG_FILE, new { id = "IMG_FILE" })
+                        @Html.HiddenFor(model => model.ITEM.IMG, new { id = "IMG" })
+                        @{
+                            if (Model.IMG_FILE != null)
+                            {
+                                <img src="@Model.IMG_FILE" id="img" width="35px" height="35px" style="max-height:100%; max-width:100%; vertical-align:middle;cursor:pointer" onclick="imgpreview(this.id);">
+                                @*<img src="" id="img1" width="35px" height="35px" style="max-height:100%; max-width:100%; vertical-align:middle;cursor:pointer;display:none" onclick="imgpreview('img');">*@
+                            }
+                            else
+                            {
+                                <img src="~/Image/NoImage.jpg" id="img" width="35px" height="35px" style="max-height:100%;display:none; max-width:100%; vertical-align:middle;cursor:pointer" onclick="imgpreview(this.id);">
+                                @*<img src="~/Image/NoImage.jpg" id="img1" width="35px" height="35px" style="max-height:100%; max-width:100%; vertical-align:middle;cursor:pointer;" onclick="imgpreview('img');">*@
+
+                            }
+                        }
+                        @*@Html.TextBoxFor(m => m.ITEM.IMG, new { id = "IMG", @class = "form-control input", @placeholder = "Image", autocomplete = "off" })*@
+                    </div>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label class="h5 mb-2 text-gray-800">Price:</label>
-                    @Html.TextBoxFor(m => m.ITEM.PRICE, new { id = "PRICE", @class = "form-control input", @placeholder = "Price", autocomplete = "off" })
+                    @Html.TextBoxFor(m => m.ITEM.PRICE, new { id = "PRICE", @class = "form-control input", @placeholder = "Price", autocomplete = "off", @onkeypress = "return numericOnly(this,2);" })
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label class="h5 mb-2 text-gray-800">Status:</label>
-                    @Html.TextBoxFor(m => m.ITEM.STATUS, new { id = "STATUS", @class = "form-control input", @placeholder = "Status", autocomplete = "off" })
+                    @Html.DropDownListFor(model => model.ITEM.STATUS, new SelectList(Model.STATUS_DROPDOWN, "Value", "Text"), "==SELECT==", new { @class = "form-control", id = "STATUS" })
+                    @*@Html.TextBoxFor(m => m.ITEM.STATUS, new { id = "STATUS", @class = "form-control input", @placeholder = "Status", autocomplete = "off" })*@
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label class="h5 mb-2 text-gray-800">Category:</label>
-                    @Html.TextBoxFor(m => m.ITEM.CATE_CD, new { id = "CATE_CD", @class = "form-control input", @placeholder = "Category", autocomplete = "off" })
+                    @Html.DropDownListFor(model => model.ITEM.CATE_CD, new SelectList(Model.CATE_CD_DROPDOWN, "Value", "Text"), "==SELECT==", new { @class = "form-control", id = "CATE_CD" })
+                    @*@Html.TextBoxFor(m => m.ITEM.CATE_CD, new { id = "CATE_CD", @class = "form-control input", @placeholder = "Category", autocomplete = "off" })*@
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label class="h5 mb-2 text-gray-800">Item Type:</label>
-                    @Html.TextBoxFor(m => m.ITEM.ITEM_TYPE, new { id = "ITEM_TYPE", @class = "form-control input", @placeholder = "Item Type", autocomplete = "off" })
+                    @Html.DropDownListFor(model => model.ITEM.ITEM_TYPE, new SelectList(Model.ITEM_TYPE_DROPDOWN, "Value", "Text"), "==SELECT==", new { @class = "form-control", id = "ITEM_TYPE" })
+                    @*@Html.TextBoxFor(m => m.ITEM.ITEM_TYPE, new { id = "ITEM_TYPE", @class = "form-control input", @placeholder = "Item Type", autocomplete = "off" })*@
                 </div>
             </div>
             <div class="col-md-8">
                 <a href="#" id="Btnsave" class="btn btn-success btn-icon-split" title="SAVE">
                     <span class="icon text-white-50">
-                      
+
                         <i class="fas fa-check"></i>
                     </span>
                     <span class="text">Save</span>
@@ -259,4 +365,4 @@
             </div>
         </div>
     </div>
-}
+                            }

@@ -16,7 +16,37 @@ namespace FoodHub.Controllers
         public ActionResult Index()
         {
             ItemEntry VE = new ItemEntry();
+            //STATUS
+            List<STATUS_DROPDOWN> STATUS = new List<STATUS_DROPDOWN>();
+            STATUS_DROPDOWN STATUS3 = new STATUS_DROPDOWN();
+            STATUS3.Text = "Available";
+            STATUS3.Value = "Available";
+            STATUS.Add(STATUS3);
+            STATUS_DROPDOWN STATUS2 = new STATUS_DROPDOWN();
+            STATUS2.Text = "Not Available";
+            STATUS2.Value = "Not Available";
+            STATUS.Add(STATUS2);
+            VE.STATUS_DROPDOWN = STATUS;
+
+            //ITEM_TYPE
+            List<ITEM_TYPE_DROPDOWN> ITEMTYPE = new List<ITEM_TYPE_DROPDOWN>();
+            ITEM_TYPE_DROPDOWN ITEMTYPE3 = new ITEM_TYPE_DROPDOWN();
+            ITEMTYPE3.Text = "Veg";
+            ITEMTYPE3.Value = "Veg";
+            ITEMTYPE.Add(ITEMTYPE3);
+            ITEM_TYPE_DROPDOWN ITEMTYPE2 = new ITEM_TYPE_DROPDOWN();
+            ITEMTYPE2.Text = "Non-Veg";
+            ITEMTYPE2.Value = "Non-Veg";
+            ITEMTYPE.Add(ITEMTYPE2);
+            VE.ITEM_TYPE_DROPDOWN = ITEMTYPE;
+
+            //CATE_CD
+            VE.CATE_CD_DROPDOWN = (from n in DB.CATEGORY
+                                   select new CATE_CD_DROPDOWN() { Text = n.CATE_NM, Value = n.CATE_CD }).OrderBy(s => s.Value).Distinct().ToList();
+
             VE.ITEMLIST = (from a in DB.ITEM
+                           join b in DB.CATEGORY on a.CATE_CD equals b.CATE_CD into x
+                           from b in x.DefaultIfEmpty()
                            select new ITEMLIST()
                            {
                                ITEM_CD = a.ITEM_CD,
@@ -26,6 +56,7 @@ namespace FoodHub.Controllers
                                PRICE = a.PRICE,
                                STATUS = a.STATUS,
                                CATE_CD = a.CATE_CD,
+                               CATE_NM = b.CATE_NM,
                                ITEM_TYPE = a.ITEM_TYPE
                            }).ToList();
             for (int i = 0; i <= VE.ITEMLIST.Count - 1; i++)
@@ -64,6 +95,7 @@ namespace FoodHub.Controllers
             try
             {
                 var Q = (from a in DB.ITEM
+                         where a.ITEM_CD == ItemCode
                          select new
                          {
                              ITEM_CD = a.ITEM_CD,
@@ -76,7 +108,7 @@ namespace FoodHub.Controllers
                              ITEM_TYPE = a.ITEM_TYPE
 
                          }).FirstOrDefault();
-                
+
                 return Json(Q, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

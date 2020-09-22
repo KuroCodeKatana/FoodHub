@@ -26,7 +26,7 @@ namespace FoodHub.Models
 
         public int CATE_CD { get; set; }
 
-       
+        public string CATE_NM { get; set; }
         public string ITEM_TYPE { get; set; }
 
         public int SLNO { get; set; }

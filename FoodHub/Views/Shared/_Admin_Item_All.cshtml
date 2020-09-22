@@ -12,6 +12,8 @@
             <th>Status</th>
             <th>Category</th>
             <th>Type</th>
+            <th></th>
+            <th></th>
         </tr>
         @foreach (var Q in Model.ITEMLIST)
         {
@@ -25,7 +27,7 @@
         <td>@Q.IMG</td>
         <td>@Q.PRICE</td>
         <td>@Q.STATUS</td>
-        <td>@Q.CATE_CD</td>
+        <td>@Q.CATE_NM</td>
         <td>@Q.ITEM_TYPE</td>
         <td>
             <a href="#" id="Btnedit" class="btn btn-info btn-icon-split" dataid="@Q.ITEM_CD" title="EDIT">
