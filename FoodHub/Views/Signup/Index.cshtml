@@ -15,7 +15,7 @@
                 <li><a href="#" data-ref="uname">Username</a></li>
                 <li><a href="#" data-ref="email">Email</a></li>
                 <li><a href="#" data-ref="viewpswd">Password</a></li>
-                <li><a href="#" data-ref="phone">DOB</a></li>
+                <li><a href="#" data-ref="datepicker">DOB</a></li>
                 <li><a href="#" data-ref="phone">Phone</a></li>
                 <li><a href="#" data-ref="phone">Address</a></li>
                 <li><a href="#" data-ref="phone">City</a></li>
@@ -34,18 +34,18 @@
 
                 <li>
                     <span><label for="email">Enter Email</label></span>
-                    @Html.TextBoxFor(m => m.USER_DETAILS.EMAIL, new { id = "EMAIL", @class = "", @placeholder = "Email" })
+                    @Html.TextBoxFor(m => m.USER_DETAILS.EMAIL, new { id = "EMAIL", @placeholder = "Email", @autofocus = "true" })
                 </li>
                 <li>
                     <span><label for="password">PASSWORD</label></span>
-                    @Html.PasswordFor(m => m.USER_DETAILS.PASSWORD, new { id = "PASSWORD", @class = "", @maxlength = 32 })
+                    @*<input id="viewpswd" name="password" type="text" />*@
+                    @Html.PasswordFor(m => m.USER_DETAILS.PASSWORD, new { id = "viewpswd",name= "password" })
                     <span id="show-pwd" class="view"></span>
                 </li>
-
                 <li>
                     <span><label for="DOB">DOB</label></span>
-                    <input type="text" name="startDate" value="" id="datepicker" class="" data-dateformat="dd/mm/yy" placeholder="Date">
-                    @*@Html.TextBoxFor(m => m.USER_DETAILS.DOB, new { id = "datepicker", @class = "form-control input ", @dateformat = "dd/mm/yy" })*@
+                    @*<input type="text" name="startDate" value="" id="datepicker" class="" data-dateformat="dd/mm/yy" placeholder="Date">*@
+                    @Html.TextBoxFor(m => m.USER_DETAILS.DOB, new { id = "datepicker", @dateformat = "dd/mm/yy" })
                 </li>
                 <li>
                     <span><label for="phone">Contact_no</label></span>
@@ -59,7 +59,7 @@
                             <option data-countryCode="AO" value="244">(+244) Angola </option>
                             <option data-countryCode="AI" value="1264"> (+1264) Anguilla</option>
                             <option data-countryCode="AG" value="1268">(+1268) Antigua &amp; Barbuda </option>
-                            <option data-countryCode="AR" value="54">(+54) Argentina </option>
+                            <option data-countryCode="AR" value="54">(+dbstate54) Argentina </option>
                             <option data-countryCode="AM" value="374"> (+374) Armenia</option>
                             <option data-countryCode="AW" value="297">(+297) Aruba </option>
                             <option data-countryCode="AU" value="61"> (+61) Australia</option>
@@ -72,18 +72,20 @@
                 </li>
                 <li>
                     <span><label for="address">Address</label></span>
-                    @Html.TextBoxFor(m => m.USER_DETAILS.ADDRESS, new { id = "ADDRESS", @class = "", @placeholder = "Email" })
+                    @Html.TextBoxFor(m => m.USER_DETAILS.ADDRESS, new { id = "ADDRESS", @placeholder = "Address" })
                 </li>
                 <li>
                     <span><label for="city">City</label></span>
                     <select id="dbcity" class="form-control">
                         <option value="-1">Select City</option>
+                        <option value="Krishnanagar">Krishnanagar</option>
+                        <option value="DumDum">DumDum</option>
+                        <option value="Howrah">Howrah</option>
                     </select>
-
                 </li>
                 <li>
                     <span><label for="pin">Pin</label></span>
-                    @Html.TextBoxFor(m => m.USER_DETAILS.PIN, new { id = "PIN", @class = "", @placeholder = "Email" })
+                    @Html.TextBoxFor(m => m.USER_DETAILS.PIN, new { id = "PIN", @placeholder="Pin" })
                 </li>
                 <li>
                     <span><label for="state">Select State</label></span>
@@ -95,12 +97,12 @@
                 <li>
                     <span><label for="user_type">User_type</label></span>
 
-                    @Html.TextBoxFor(m => m.USER_DETAILS.USER_TYPE, new { id = "USER_TYPE", @class = "", @placeholder = "Email" })
+                    @Html.TextBoxFor(m => m.USER_DETAILS.USER_TYPE, new { id = "USER_TYPE", @placeholder = "User_Type" })
                 </li>
                 <li>
                     <span><label for="gender">Gender</label></span>
 
-                    @Html.TextBoxFor(m => m.USER_DETAILS.GENDER, new { id = "GENDER", @class = "", @placeholder = "Email" })
+                    @Html.TextBoxFor(m => m.USER_DETAILS.GENDER, new { id = "GENDER", @placeholder = "Gender" })
                 </li>
                 <li>
                     <p style="margin-top: 45px;font-size: 32pt;float:right">
@@ -111,53 +113,53 @@
 
             </ol>
 
-            <script type="text/javascript">
-                        $(document).ready(function () {
-                            BindStatelist();
-                        });
-                        function BindStatelist() {
+            @*<script type="text/javascript">
+                            $(document).ready(function () {
+                                BindStatelist();
+                            });
+                            function BindStatelist() {
 
+                                    $.ajax({
+                                        type: "POST",
+                                        url: '@Url.Action("GetState", "LoginController")',
+                                        contentType: "application/json;charset=utf-8",
+                                        async: false,
+                                        catch: false,
+                                        dataType: "json",
+                                        success: function (data) {
+                                            $.each(data, function (index, value) {
+                                                $("#dbstate").append('<option value="' + value.STATE_ID +'"> +value.STATE_NAME+</option>')
+                                            });
+
+                                        },
+                                        error: function (error) {
+                                            console.log(error);
+                                        }
+                                    });
+                            }
+                            $(document).on('change', '#dbstate', function () {
+                                var STATE_ID = $(this).val();
                                 $.ajax({
                                     type: "POST",
-                                    url: '@Url.Action("GetState", "LoginController")',
-                                    contentType: "application/json;charset=utf-8",
-                                    async: false,
-                                    catch: false,
-                                    dataType: "json",
-                                    success: function (data) {
-                                        $.each(data, function (index, value) {
-                                            $("#dbstate").append('<option value="' + value.STATE_ID +'"> +value.STATE_NAME+</option>')
-                                        });
+                                    url: '@Url.Action("GetCity", "LoginController")',
+                                    data: JSON.stringify{(_STATE_ID: STATE_ID)},
+                                contentType: "application/json;charset=utf-8",
+                                async: false,
+                                 catch: false,
+                                dataType: "json",
+                                success: function(data) {
+                                    $("#dbstate").empty();
+                                    $.each(data, function (index, value) {
+                                        $("#dbstate").append('<option value="' + value.CITY_ID +'">+value.CITY_NAME+</option>')
+                                    });
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                                })
 
-                                    },
-                                    error: function (error) {
-                                        console.log(error);
-                                    }
-                                });
-                        }
-                        $(document).on('change', '#dbstate', function () {
-                            var STATE_ID = $(this).val();
-                            $.ajax({
-                                type: "POST",
-                                url: '@Url.Action("GetCity", "LoginController")',
-                                data: JSON.stringify{(_STATE_ID: STATE_ID)},
-                            contentType: "application/json;charset=utf-8",
-                            async: false,
-                             catch: false,
-                            dataType: "json",
-                            success: function(data) {
-                                $("#dbstate").empty();
-                                $.each(data, function (index, value) {
-                                    $("#dbstate").append('<option value="' + value.CITY_ID +'">+value.CITY_NAME+</option>')
-                                });
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                            })
-
-                        });
-            </script>
+                            });
+                </script>*@
             <div id="next-page" alt="Kiwi standing on oval"></div>
             <div class="error-message"></div>
 
