@@ -137,5 +137,35 @@ namespace FoodHub.Controllers
             DB.SaveChanges();
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
+        //public ActionResult Img(HttpPostedFileBase Imgupload)
+        //{
+        //    if (Imgupload == null)
+        //    {
+        //        ViewBag.msg = "choose Image";
+        //    }
+        //    else
+        //    {
+        //        Imgupload.SaveAs(Server.MapPath("~//ITEMIMG//" + Imgupload.FileName));
+        //        String picpath = "~//ITEMIMG//" + Imgupload.FileName;
+        //        ITEM obj = new ITEM
+        //        {
+        //            IMG = picpath
+        //        };
+        //       obj.IMG.Add(obj);
+        //        DB.SaveChanges();
+        //    }
+
+        //    return View();
+        //}
+        ////    private void BindImageList()
+        ////        ItemEntry VE = new ItemEntry();
+        ////    {
+        ////        VE.ITEMLIST = (from test in DB.ITEM
+
+        //                       select new ITEMLIST
+        //                       {
+        //                           IMG = test.IMG
+        //}).ToList();
+
     }
 }

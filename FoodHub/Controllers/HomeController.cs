@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,6 +23,7 @@ namespace FoodHub.Controllers
         {
             ItemEntry VE = new ItemEntry();
             VE.ITEMLIST = (from test in DB.ITEM
+
                      select new ITEMLIST
                      {
                          ITEM_CD = test.ITEM_CD,
@@ -44,6 +46,11 @@ namespace FoodHub.Controllers
         {
             return View();
         }
-
+      public ActionResult single_Item()
+        {
+            return View();
+            
+        }
+        
     }
 }

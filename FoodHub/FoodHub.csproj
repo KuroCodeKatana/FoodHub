@@ -1967,6 +1967,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="ITEMIMG\I1.jpg" />
+    <Content Include="ITEMIMG\I2.jpg" />
+    <Content Include="ITEMIMG\I3.jpeg" />
+    <Content Include="ITEMIMG\images %281%29.jpg" />
+    <Content Include="ITEMIMG\images %285%29.jpg" />
+    <Content Include="ITEMIMG\images %286%29.jpg" />
+    <Content Include="ITEMIMG\images %287%29.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
@@ -2199,6 +2206,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Signup\Index.cshtml" />
+    <Content Include="Views\Home\single_Item.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿using FoodHub.Models;
+﻿  using FoodHub.Models;
 using FoodHub.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -54,12 +54,12 @@ namespace FoodHub.Controllers
                     return Content("Invalid User Id and Password !!");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Content(ex.Message + ex.InnerException);
 
             }
-            
+
         }
 
         public JsonResult GetState()
@@ -72,6 +72,21 @@ namespace FoodHub.Controllers
         {
             var Q = (from test in db.CITY where test.STATE_ID == STATE_ID select new { test.CITY_ID, test.CITY_NAME }).ToList();
             return Json(Q, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult Login(string USER_NAME, string PASSWORD)
+        {
+            var Q = db.USER_DETAILS.Where(m => m.USER_NAME == USER_NAME && m.PASSWORD == PASSWORD).FirstOrDefault();
+            if (Q != null)
+            {
+                Session["Name"] = Q.USER_NAME;
+      
+            }
+            else
+            {
+                ViewBag.Msg = "Not Valid User name";
+            }
+            return View();
         }
     }
 }
