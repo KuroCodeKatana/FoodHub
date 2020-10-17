@@ -50,7 +50,7 @@ namespace FoodHub.Controllers
         public ActionResult Single_Item()
         {
             ItemEntry VE = new ItemEntry();
-            string Item_Code = Session["itcs"].ToString();
+            string Item_Code = Session["itcd"].ToString();
             ITEM item = new ITEM();
             item = DB.ITEM.Find(Item_Code);
             VE.ITEM = item;
