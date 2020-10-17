@@ -17,35 +17,38 @@
         </tr>
         @foreach (var Q in Model.ITEMLIST)
         {
-    <tr>
-        <td>
-            @Q.SLNO
-        </td>
-        <td>@Q.ITEM_CD</td>
-        <td>@Q.ITEM_NM</td>
-        <td>@Q.ITEM_DESC</td>
-        <td>@Q.IMG</td>
-        <td>@Q.PRICE</td>
-        <td>@Q.STATUS</td>
-        <td>@Q.CATE_NM</td>
-        <td>@Q.ITEM_TYPE</td>
-        <td>
-            <a href="#" id="Btnedit" class="btn btn-info btn-icon-split" dataid="@Q.ITEM_CD" title="EDIT">
-                <span class="icon text-white-50">
-                    <i class="fas fa-info-circle"></i>
-                </span>
-                <span class="text">Edit</span>
-            </a>
-        </td>
-        <td>
-            <a href="#" id="Btndel" class="btn btn-danger btn-icon-split" dataid="@Q.ITEM_CD" title="DELETE">
-                <span class="icon text-white-50">
-                    <i class="fas fa-trash"></i>
-                </span>
-                <span class="text">Delete</span>
-            </a>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Q.SLNO
+                </td>
+                <td>@Q.ITEM_CD</td>
+                <td>@Q.ITEM_NM</td>
+                <td>@Q.ITEM_DESC</td>
+                <td>
+                    <img src="@Q.IMG_FILE" id="img" width="35px" height="35px" style="max-height:100%; max-width:100%; vertical-align:middle;cursor:pointer" onclick="imgpreview(this.id);">
+                </td>
+                @*<td>@Q.IMG</td>*@
+                <td>@Q.PRICE</td>
+                <td>@Q.STATUS</td>
+                <td>@Q.CATE_NM</td>
+                <td>@Q.ITEM_TYPE</td>
+                <td>
+                    <a href="#" id="Btnedit" class="btn btn-info btn-icon-split" dataid="@Q.ITEM_CD" title="EDIT">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                        <span class="text">Edit</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" id="Btndel" class="btn btn-danger btn-icon-split" dataid="@Q.ITEM_CD" title="DELETE">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text">Delete</span>
+                    </a>
+                </td>
+            </tr>
         }
     </table>
 }

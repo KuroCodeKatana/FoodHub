@@ -6,12 +6,15 @@ using System.Web;
 using System.Web.Mvc;
 using FoodHub.Models;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace FoodHub.Controllers
 {
     public class Admin_ItemController : Controller
     {
         DbModel DB = new DbModel();
+        //string path = @"C:\ItemImage";
+
         // GET: Admin_Item
         public ActionResult Index()
         {
@@ -62,6 +65,16 @@ namespace FoodHub.Controllers
             for (int i = 0; i <= VE.ITEMLIST.Count - 1; i++)
             {
                 VE.ITEMLIST[i].SLNO = Convert.ToInt32(i + 1);
+                if (VE.ITEMLIST[i].IMG != null)
+                {
+                    string filenm = VE.ITEMLIST[i].IMG;
+                    string filepath = Server.MapPath("~/Content/ItemImage/" + filenm.ToString());
+                    VE.ITEMLIST[i].IMG_FILE = DocpathToBase64(filepath);
+                    var mimetype = MimeMapping.GetMimeMapping(filenm);
+                    var mimeurl = "data:" + mimetype + ";base64,";
+                    VE.ITEMLIST[i].IMG_FILE = (mimeurl + VE.ITEMLIST[i].IMG_FILE);
+                    //VE.ITEMLIST[i].IMG_FILE = "~/Content/ItemImage/" + VE.ITEMLIST[i].IMG;
+                }
             }
             return View(VE);
         }
@@ -69,13 +82,20 @@ namespace FoodHub.Controllers
         {
             try
             {
+
+                //string filename = path + "/"  + VE.ITEM.IMG;
+                //SaveImage(VE.IMG_FILE, filename);
+
                 ITEM CAT = new ITEM();
                 Random rnd = new Random();
                 int id = rnd.Next(0, 9999);
+                string ext = Path.GetExtension(VE.ITEM.IMG);
+                string filename = Server.MapPath("~/Content/ItemImage/" + id.ToString() + ext);// path + "/" + id.ToString() + ext;
+                SaveImage(VE.IMG_FILE, filename);
                 CAT.ITEM_CD = id;
                 CAT.ITEM_NM = VE.ITEM.ITEM_NM;
                 CAT.ITEM_DESC = VE.ITEM.ITEM_DESC;
-                CAT.IMG = VE.ITEM.IMG;
+                CAT.IMG = id.ToString() + ext;
                 CAT.PRICE = VE.ITEM.PRICE;
                 CAT.STATUS = VE.ITEM.STATUS;
                 CAT.CATE_CD = VE.ITEM.CATE_CD;
@@ -105,11 +125,23 @@ namespace FoodHub.Controllers
                              PRICE = a.PRICE,
                              STATUS = a.STATUS,
                              CATE_CD = a.CATE_CD,
-                             ITEM_TYPE = a.ITEM_TYPE
-
+                             ITEM_TYPE = a.ITEM_TYPE,
                          }).FirstOrDefault();
 
-                return Json(Q, JsonRequestBehavior.AllowGet);
+
+                string IMG_FILE = "";
+                if (Q.IMG != null)
+                {
+                    string filenm = Q.IMG;
+                    string filepath = Server.MapPath("~/Content/ItemImage/" + filenm.ToString());
+                    var IMG_FILE1 = DocpathToBase64(filepath);
+                    var mimetype = MimeMapping.GetMimeMapping(filenm);
+                    var mimeurl = "data:" + mimetype + ";base64,";
+                    IMG_FILE = (mimeurl + IMG_FILE1);
+                }
+                string data = Q + "~~~" + IMG_FILE;
+
+                return Json(data, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -120,9 +152,12 @@ namespace FoodHub.Controllers
         {
             int code = VE.ITEM.ITEM_CD;
             var Q = DB.ITEM.Where(M => M.ITEM_CD == code).FirstOrDefault();
+            string ext = Path.GetExtension(VE.ITEM.IMG);
+            string filename = Server.MapPath("~/Content/ItemImage/" + Q.ITEM_CD.ToString() + ext);// path + "/" + id.ToString() + ext;
+            SaveImage(VE.IMG_FILE, filename);
             Q.ITEM_NM = VE.ITEM.ITEM_NM;
             Q.ITEM_DESC = VE.ITEM.ITEM_DESC;
-            Q.IMG = VE.ITEM.IMG;
+            Q.IMG = Q.ITEM_CD.ToString() + ext;
             Q.PRICE = VE.ITEM.PRICE;
             Q.STATUS = VE.ITEM.STATUS;
             Q.CATE_CD = VE.ITEM.CATE_CD;
@@ -137,35 +172,46 @@ namespace FoodHub.Controllers
             DB.SaveChanges();
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
-        //public ActionResult Img(HttpPostedFileBase Imgupload)
-        //{
-        //    if (Imgupload == null)
-        //    {
-        //        ViewBag.msg = "choose Image";
-        //    }
-        //    else
-        //    {
-        //        Imgupload.SaveAs(Server.MapPath("~//ITEMIMG//" + Imgupload.FileName));
-        //        String picpath = "~//ITEMIMG//" + Imgupload.FileName;
-        //        ITEM obj = new ITEM
-        //        {
-        //            IMG = picpath
-        //        };
-        //       obj.IMG.Add(obj);
-        //        DB.SaveChanges();
-        //    }
+        public string SaveImage(string DBImgString, string ImgPath)
+        {
+            try
+            {
+                if (DBImgString != "" || DBImgString.IndexOf(',') > 1)
+                {
+                    DBImgString = DBImgString.Substring(DBImgString.IndexOf(',') + 1);
+                }
+                var sPath = Path.Combine(ImgPath);
 
-        //    return View();
-        //}
-        ////    private void BindImageList()
-        ////        ItemEntry VE = new ItemEntry();
-        ////    {
-        ////        VE.ITEMLIST = (from test in DB.ITEM
 
-        //                       select new ITEMLIST
-        //                       {
-        //                           IMG = test.IMG
-        //}).ToList();
+                //var sPath = HttpContext.Current.Server.MapPath(ImgPath);
+                //String path = @"c:/Improvar";
 
+                if (System.IO.File.Exists(sPath))
+                {
+                    System.IO.File.Delete(sPath); //Delete file if it  exist
+                }
+                byte[] imageBytes = Convert.FromBase64String(DBImgString);
+                System.IO.File.WriteAllBytes(sPath, imageBytes);
+                return sPath;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public string DocpathToBase64(string path)
+        {
+            try
+            {
+                var Docpath = Path.Combine(path);
+                byte[] imageBytes = System.IO.File.ReadAllBytes(Docpath);
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
     }
 }

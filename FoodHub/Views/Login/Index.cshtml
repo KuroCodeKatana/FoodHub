@@ -32,11 +32,11 @@
             <div class="login-form">
                 <div class="sign-in-htm">
                     <div class="group">
-                        @Html.LabelFor(m => m.USER_NAME, new { @class = "label" })
-                        @Html.TextBoxFor(m => m.USER_NAME, new { id = "USER_NAME", @class = "form-control input", maxlength = 20, @placeholder = "Username" })
+                        <label>USER NAME</label>
+                        @Html.TextBoxFor(m => m.USER_NAME, new { id = "USER_NAME", @class = "form-control input", maxlength = 20,@required="required" })
                     </div>
                     <div class="group">
-                        @Html.LabelFor(m => m.PASSWORD, new { @class = "label" })
+                        <label>PASSWORD</label>
                         @Html.PasswordFor(m => m.PASSWORD, new { id = "PASSWORD", @class = "form-control input", maxlength = 32 })
                     </div>
                     <div class="group">

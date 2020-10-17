@@ -95,16 +95,19 @@
             data: { "ItemCode": Iide },
             datatype: JSON,
             success: function (data) {
+                debugger;
+                var str = data.split('~~~');
+
                 //$("#AddData").attr("class", "");
                 //$("#AddData").attr("class", "tab-pane fade in active");
-                $("#ITEM_CD").val(data.ITEM_CD);
-                $("#ITEM_NM").val(data.ITEM_NM);
-                $("#ITEM_DESC").val(data.ITEM_DESC);
-                $("#IMG").val(data.IMG);
-                $("#PRICE").val(data.PRICE);
-                $("#STATUS").val(data.STATUS);
-                $("#CATE_CD").val(data.CATE_CD);
-                $("#ITEM_TYPE").val(data.ITEM_TYPE);
+                $("#ITEM_CD").val(str[0].ITEM_CD);
+                $("#ITEM_NM").val(str[0].ITEM_NM);
+                $("#ITEM_DESC").val(str[0].ITEM_DESC);
+                $("#IMG").val(str[1]);
+                $("#PRICE").val(str[0].PRICE);
+                $("#STATUS").val(str[0].STATUS);
+                $("#CATE_CD").val(str[0].CATE_CD);
+                $("#ITEM_TYPE").val(str[0].ITEM_TYPE);
                 $("#Btnsave").hide();
                 $("#Btnupdate").show();
                 $("#AddData").show();
@@ -299,6 +302,7 @@
                     <div class="col-md-6">
                         <div class="editor-field" style="margin-top: 4px;">
                             <input type="file" class="form-control" id="ImageData" name="ImageData" accept=".png, .jpg, .jpeg" onchange="fileCheck(this);" />
+                            @*@Html.TextBox("FileUpload1", null, new { id = "ImageData", @type = "file", @style = "width:550px", @accept = ".png, .jpg, .jpeg",@onchange = "fileCheck(this);" })*@
                         </div>
                     </div>
                     <div class="col-md-6">

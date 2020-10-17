@@ -30,5 +30,6 @@ namespace FoodHub.Models
         public string ITEM_TYPE { get; set; }
 
         public int SLNO { get; set; }
+        public string IMG_FILE { get; set; }
     }
 }
