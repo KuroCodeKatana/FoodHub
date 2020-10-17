@@ -1,5 +1,6 @@
-﻿
+﻿@model IEnumerable<FoodHub.Models.ITEMLIST>
 @{
+  
     ViewBag.Title = "single_Item";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,31 +17,38 @@
                 </div>
                 <div class="col-md-6">
                     <div class="package-rightpart">
-                        <div class="package-title">
-                            <h3>Breakfast with Egg salad</h3>
+                        <div class="group">
+                            @Html.LabelFor(m => m.ITEMLIST.ITEM_NM, new { @class = "label" })
+                            @Html.TextBoxFor(m => m.ITEMLIST.ITEM_NM, new { id = "Txtnm", @class = "form-control input", @maxlength = 20, @placeholder = "Item_Name" })
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quo distinctio, cupiditate harum labore assumenda vitae velit officia, nihil id corporis iure. Mollitia qui illo, similique blanditiis! Reiciendis, nostrum, nobis?</p>
                         </div>
-                        <div class="ingredients">
-                            <h4>Ingredients:</h4>
-                            <div class="col-md-4 col-sm-4">
-                                <ul>
-                                    <li>Eggs</li>
-                                    <li>Chicken</li>
-                                    <li>Swordfish</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <ul>
-                                    <li>Fruity</li>
-                                    <li>Caffe</li>
-                                    <li>Pasta</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <ul>
-                                    <li>Chicken</li>
-                                </ul>
-                            </div>
+                        <div class="group">
+                            @Html.LabelFor(m => m.ITEMLIST.PRICE, new { @class = "label" })
+                            @Html.TextBoxFor(m => m.ITEMLIST.PRICE, new { id = "Txtprice", @class = "form-control input", @maxlength = 20, @placeholder = "Price" })
+                            @*<div class="col-md-4 col-sm-4">
+                <ul>
+                    <li>Eggs</li>
+                    <li>Chicken</li>
+                    <li>Swordfish</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <ul>
+                    <li>Fruity</li>
+                    <li>Caffe</li>
+                    <li>Pasta</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <ul>
+                    <li>Chicken</li>
+                </ul>
+            </div>*@
+                        </div>
+                        <div class="group">
+                            @Html.LabelFor(m => m.ITEMLIST.STATUS, new { @class = "label" })
+                            @Html.TextBoxFor(m => m.ITEMLIST.STATUS, new { id = "Txtstatus", @class = "form-control input", @maxlength = 20, @placeholder = "Status" })
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quo distinctio, cupiditate harum labore assumenda vitae velit officia, nihil id corporis iure. Mollitia qui illo, similique blanditiis! Reiciendis, nostrum, nobis?</p>
                         </div>
                         <div class="package-price row">
                             <div class="col-md-3 col-sm-3 price-pd">
@@ -48,7 +56,7 @@
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <div class="regular-price">
-                                    <span class="text">Regular Price</span><br>
+                                    <span class="text"></span><br>
                                     <span class="price-close">$49.67</span>
                                 </div>
                             </div>
@@ -135,3 +143,21 @@
         </div>
     </div>
     </section>
+    <script src="~/Js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url:'@Url.Action("Single_Item", "HomeController")',
+            datatype: JSON,
+            success: function (data) {
+
+
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        });
+</script>

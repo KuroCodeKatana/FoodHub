@@ -4,6 +4,7 @@ using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using FoodHub.Models;
 using FoodHub.ViewModels;
 
@@ -46,9 +47,11 @@ namespace FoodHub.Controllers
         {
             return View();
         }
-      public ActionResult single_Item()
+      public JsonResult Single_Item()
         {
-            return View();
+            string Item_Name = Session["nm"].ToString();
+            var Q = DB.ITEM.Where(m => m.ITEM_NM == Item_Name).FirstOrDefault();
+            return Json(Q, JsonRequestBehavior.AllowGet);
             
         }
         
