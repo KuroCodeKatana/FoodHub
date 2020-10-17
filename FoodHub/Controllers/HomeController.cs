@@ -25,18 +25,18 @@ namespace FoodHub.Controllers
             ItemEntry VE = new ItemEntry();
             VE.ITEMLIST = (from test in DB.ITEM
 
-                     select new ITEMLIST
-                     {
-                         ITEM_CD = test.ITEM_CD,
-                         ITEM_NM=test.ITEM_NM,
-                         ITEM_DESC=test.ITEM_DESC,
-                         IMG=test.IMG,
-                         PRICE=test.PRICE,
-                         STATUS=test.STATUS,
-                         CATE_CD=test.CATE_CD,
-                         ITEM_TYPE=test.ITEM_TYPE
-                     }).ToList();
-            
+                           select new ITEMLIST
+                           {
+                               ITEM_CD = test.ITEM_CD,
+                               ITEM_NM = test.ITEM_NM,
+                               ITEM_DESC = test.ITEM_DESC,
+                               IMG = test.IMG,
+                               PRICE = test.PRICE,
+                               STATUS = test.STATUS,
+                               CATE_CD = test.CATE_CD,
+                               ITEM_TYPE = test.ITEM_TYPE
+                           }).ToList();
+
             return View(VE);
         }
         public ActionResult Contact()
@@ -47,13 +47,16 @@ namespace FoodHub.Controllers
         {
             return View();
         }
-      public JsonResult Single_Item()
+        public ActionResult Single_Item()
         {
-            string Item_Name = Session["nm"].ToString();
-            var Q = DB.ITEM.Where(m => m.ITEM_NM == Item_Name).FirstOrDefault();
-            return Json(Q, JsonRequestBehavior.AllowGet);
-            
+            ItemEntry VE = new ItemEntry();
+            string Item_Code = Session["itcs"].ToString();
+            ITEM item = new ITEM();
+            item = DB.ITEM.Find(Item_Code);
+            VE.ITEM = item;
+            return View(VE);
+
         }
-        
+
     }
 }
