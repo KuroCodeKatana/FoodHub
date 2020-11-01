@@ -2207,6 +2207,9 @@
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Signup\Index.cshtml" />
     <Content Include="Views\Home\single_Item.cshtml" />
+    <Content Include="Views\Shared\_Breakfast.cshtml" />
+    <Content Include="Views\Shared\_Lunch.cshtml" />
+    <Content Include="Views\Shared\_Dinner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

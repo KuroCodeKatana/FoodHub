@@ -14,7 +14,11 @@ namespace FoodHub.ViewModels
         public List<ITEM_TYPE_DROPDOWN> ITEM_TYPE_DROPDOWN { get; set; }
         public List<CATE_CD_DROPDOWN> CATE_CD_DROPDOWN { get; set; }
         public string IMG_FILE { get; set; }
+        public List<ITEMLIST> BREAKFASTLIST { get; set; }
+        public List<ITEMLIST> LUNCHLIST { get; set; }
+        public List<ITEMLIST> DINNERLIST { get; set; }
     }
+}
     public class STATUS_DROPDOWN
     {
         public string Value { get; set; }
@@ -30,4 +34,3 @@ namespace FoodHub.ViewModels
         public int Value { get; set; }
         public string Text { get; set; }
     }
-}

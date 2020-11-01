@@ -17,8 +17,53 @@ namespace FoodHub.Controllers
 
         public ActionResult Index()
         {
+            ItemEntry VE = new ItemEntry();
+            VE.BREAKFASTLIST = (from test in DB.ITEM
+                                join b in DB.CATEGORY on test.CATE_CD equals b.CATE_CD
+                                where b.CATE_NM.ToUpper() == "BREAKFAST" && test.STATUS == "Available"
+                                select new ITEMLIST
+                                {
+                                    ITEM_CD = test.ITEM_CD,
+                                    ITEM_NM = test.ITEM_NM,
+                                    ITEM_DESC = test.ITEM_DESC,
+                                    IMG = test.IMG,
+                                    PRICE = test.PRICE,
+                                    STATUS = test.STATUS,
+                                    CATE_CD = test.CATE_CD,
+                                    ITEM_TYPE = test.ITEM_TYPE
+                                }).ToList();
 
-            return View();
+            VE.LUNCHLIST = (from test in DB.ITEM
+                                join b in DB.CATEGORY on test.CATE_CD equals b.CATE_CD
+                                where b.CATE_NM.ToUpper() == "LUNCH" && test.STATUS == "Available"
+                            select new ITEMLIST
+                                {
+                                    ITEM_CD = test.ITEM_CD,
+                                    ITEM_NM = test.ITEM_NM,
+                                    ITEM_DESC = test.ITEM_DESC,
+                                    IMG = test.IMG,
+                                    PRICE = test.PRICE,
+                                    STATUS = test.STATUS,
+                                    CATE_CD = test.CATE_CD,
+                                    ITEM_TYPE = test.ITEM_TYPE
+                                }).ToList();
+
+            VE.DINNERLIST = (from test in DB.ITEM
+                            join b in DB.CATEGORY on test.CATE_CD equals b.CATE_CD
+                            where b.CATE_NM.ToUpper() == "DINNER" && test.STATUS == "Available"
+                             select new ITEMLIST
+                            {
+                                ITEM_CD = test.ITEM_CD,
+                                ITEM_NM = test.ITEM_NM,
+                                ITEM_DESC = test.ITEM_DESC,
+                                IMG = test.IMG,
+                                PRICE = test.PRICE,
+                                STATUS = test.STATUS,
+                                CATE_CD = test.CATE_CD,
+                                ITEM_TYPE = test.ITEM_TYPE
+                            }).ToList();
+
+            return View(VE);
         }
         public ActionResult Menu()
         {
