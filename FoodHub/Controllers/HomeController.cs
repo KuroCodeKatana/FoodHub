@@ -146,7 +146,7 @@ namespace FoodHub.Controllers
                 CARTITEM.CI_ID = id;
                 CARTITEM.CART_ID = CART.CART_ID;
                 CARTITEM.ITEM_CD = itemcd;
-                CARTITEM.QNTY = 1;
+                CARTITEM.QNTY = "1";
                 DB.CART_ITEM.Add(CARTITEM);
                 DB.SaveChanges();
 
