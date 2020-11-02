@@ -145,6 +145,7 @@
     <Compile Include="Models\FEEDBACK.cs" />
     <Compile Include="Models\ITEM.cs" />
     <Compile Include="Models\ITEMLIST.cs" />
+    <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\ORDER.cs" />
     <Compile Include="Models\STATE.cs" />
     <Compile Include="Models\USER_DETAILS.cs" />
@@ -2213,6 +2214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ItemImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

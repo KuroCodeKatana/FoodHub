@@ -1,8 +1,6 @@
 ﻿@model FoodHub.ViewModels.ItemEntry
 
 <!-- Page Section Start -->
-<div class="page-container">
-    <div class="container">
 
         <div class="col-md-12">
             <div class="row">
@@ -13,7 +11,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="item">
                                 <div class="img">
-                                    <img src="assets/img/recipes/img-01.jpg" alt="">
+                                    <img src="@Q.IMG_FILE" id="img" width="110px" height="110px" style="max-height:100%; max-width:100%; vertical-align:middle;cursor:pointer" onclick="imgpreview(this.id);">
                                 </div>
                                 <div class="details">
                                     <h3><a href="single-item.html">@Q.ITEM_NM</a></h3>
@@ -32,6 +30,5 @@
 
             </div>
         </div>
-    </div>
-</div>
+    
 <!-- Page Section End -->

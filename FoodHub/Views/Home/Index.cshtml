@@ -2,7 +2,28 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<script>
+    function AddToCart(itcd) {
+       
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Cart", "Home")',
+            data: { "itemcd": itcd },
+            datatype: JSON,
+            success: function (data) {
+                if (data == "Success") {
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
 
+</script>
 <!-- Receipes Section Start -->
 <section id="recipes" class="general-row">
     <div class="container">
