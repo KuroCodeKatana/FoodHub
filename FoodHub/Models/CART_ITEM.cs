@@ -16,9 +16,7 @@ namespace FoodHub.Models
 
         public int ITEM_CD { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string QNTY { get; set; }
+        public int QNTY { get; set; }
 
         public virtual CART CART { get; set; }
     }

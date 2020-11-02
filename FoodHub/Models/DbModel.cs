@@ -38,10 +38,6 @@ namespace FoodHub.Models
                 .WithRequired(e => e.CART)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CART_ITEM>()
-                .Property(e => e.QNTY)
-                .IsUnicode(false);
-
             modelBuilder.Entity<CATEGORY>()
                 .Property(e => e.CATE_NM)
                 .IsUnicode(false);
