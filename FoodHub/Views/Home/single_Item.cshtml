@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<center>
-    <h2>single_Item</h2>
-</center>
-
 
 <div class="container">
     <div class="row">
@@ -17,36 +13,31 @@
         </div>
         <div class="col-md-6">
             <div class="package-rightpart">
-                <div class="group">
-                    @Html.LabelFor(m => m.ITEM.ITEM_NM, new { @class = "label" })
+                <div class="package-title">
+                    <h3>@Model.ITEM.ITEM_NM</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quo distinctio, cupiditate harum labore assumenda vitae velit officia, nihil id corporis iure. Mollitia qui illo, similique blanditiis! Reiciendis, nostrum, nobis?</p>
                 </div>
-                <div class="group">
-                    @Html.LabelFor(m => m.ITEM.PRICE, new { @class = "label" })
-                    @*<div class="col-md-4 col-sm-4">
-                            <ul>
-                                <li>Eggs</li>
-                                <li>Chicken</li>
-                                <li>Swordfish</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <ul>
-                                <li>Fruity</li>
-                                <li>Caffe</li>
-                                <li>Pasta</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <ul>
-                                <li>Chicken</li>
-                            </ul>
-                        </div>*@
-                </div>
-                <div class="group">
-                    @*@Html.LabelFor(m => m.ITEMLIST.STATUS, new { @class = "label" })
-                    @Html.TextBoxFor(m => m.ITEMLIST.STATUS, new { id = "Txtstatus", @class = "form-control input", @maxlength = 20, @placeholder = "Status" })*@
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quo distinctio, cupiditate harum labore assumenda vitae velit officia, nihil id corporis iure. Mollitia qui illo, similique blanditiis! Reiciendis, nostrum, nobis?</p>
+                <div class="ingredients">
+                    <h4>Ingredients:</h4>
+                    <div class="col-md-4 col-sm-4">
+                        <ul>
+                            <li>Eggs</li>
+                            <li>Chicken</li>
+                            <li>Swordfish</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <ul>
+                            <li>Fruity</li>
+                            <li>Caffe</li>
+                            <li>Pasta</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <ul>
+                            <li>Chicken</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="package-price row">
                     <div class="col-md-3 col-sm-3 price-pd">
@@ -54,7 +45,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4">
                         <div class="regular-price">
-                            <span class="text"></span><br>
+                            <span class="text">Regular Price</span><br>
                             <span class="price-close">$49.67</span>
                         </div>
                     </div>

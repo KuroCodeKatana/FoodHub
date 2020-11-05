@@ -16,9 +16,9 @@
                                     @*<img src="assets/img/recipes/img-01.jpg" alt="">*@
                                 </div>
                                 <div class="details">
-                                    <h3><a href="single_Item.html">@Q.ITEM_NM</a></h3>
+                                    <h3><a href="~/Home/Single_Item/@Q.ITEM_CD">@Q.ITEM_NM</a></h3>
                                     <p>@Q.ITEM_DESC</p>
-                                    <a href="#" class="add-cart" onclick="AddToCart(@Q.ITEM_CD)">Add To Cart <i class="icon-cart"></i></a>
+                                    <a class="add-cart" onclick="AddToCart(@Q.ITEM_CD)" style="cursor:pointer;">Add To Cart <i class="icon-cart"></i></a>
                                 </div>
                                 <div class="price">
                                     <span>Rs. @Q.PRICE</span>

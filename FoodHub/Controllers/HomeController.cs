@@ -130,25 +130,43 @@ namespace FoodHub.Controllers
         {
             try
             {
-
                 Random rnd = new Random();
                 int id = rnd.Next(0, 9999);
 
-                CART CART = new CART();
-                CART.CART_ID = id;
-                CART.USER_ID = Convert.ToInt32(Session["USER_ID"].ToString());
-                CART.STATUS = "";
-                CART.CART_TIME = System.DateTime.Now;
-                DB.CART.Add(CART);
-                DB.SaveChanges();
+                int uid = Convert.ToInt32(Session["USER_ID"].ToString());
+                var cartid = DB.CART.Where(a => a.USER_ID == uid && a.STATUS == "A").Select(b => b.CART_ID).ToList();
+                if(cartid!=null && cartid.Count() > 0)
+                {
+                    int cart_id = cartid[0];
+                    var Q = DB.CART_ITEM.Where(M => M.CART_ID == cart_id).FirstOrDefault();
+                    var max_qnty= DB.CART_ITEM.Where(M => M.CART_ID == cart_id).Max(b=>b.QNTY);
+                    //Q.CI_ID =id ;
+                    Q.CART_ID = cart_id;
+                    Q.ITEM_CD = itemcd;
+                    Q.QNTY = max_qnty+1;
+                    DB.SaveChanges();
+                }
+                else
+                {
+                    CART CART = new CART();
+                    CART.CART_ID = id;
+                    CART.USER_ID = Convert.ToInt32(Session["USER_ID"].ToString());
+                    CART.STATUS = "A";
+                    CART.CART_TIME = System.DateTime.Now;
+                    DB.CART.Add(CART);
+                    DB.SaveChanges();
 
-                CART_ITEM CARTITEM = new CART_ITEM();
-                CARTITEM.CI_ID = id;
-                CARTITEM.CART_ID = CART.CART_ID;
-                CARTITEM.ITEM_CD = itemcd;
-                CARTITEM.QNTY = 1;
-                DB.CART_ITEM.Add(CARTITEM);
-                DB.SaveChanges();
+                    CART_ITEM CARTITEM = new CART_ITEM();
+                    CARTITEM.CI_ID = id;
+                    CARTITEM.CART_ID = CART.CART_ID;
+                    CARTITEM.ITEM_CD = itemcd;
+                    CARTITEM.QNTY = 1;
+                    DB.CART_ITEM.Add(CARTITEM);
+                    DB.SaveChanges();
+                }
+               
+
+               
 
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }
@@ -157,12 +175,13 @@ namespace FoodHub.Controllers
                 return Json(ex.Message + ex.InnerException, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult Single_Item()
+       
+        [Route("Home/Single_Item/{id?}")]
+        public ActionResult Single_Item(int? id)
         {
             ItemEntry VE = new ItemEntry();
-            string Item_Code = Session["itcd"].ToString();
             ITEM item = new ITEM();
-            item = DB.ITEM.Find(Item_Code);
+            item = DB.ITEM.Where(a=>a.ITEM_CD==id).FirstOrDefault();
             VE.ITEM = item;
             return View(VE);
 
