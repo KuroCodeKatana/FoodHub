@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 package-leftpart">
-            <img src="img/recipes/s1.jpg" alt="">
+            <img src="@Model.ITEM.IMG" alt="@Model.ITEM.ITEM_NM">               @*imgpath ta change koredish. I Think eto baar image path na change kore jodi db te full path save kora jeto better hoto*@
         </div>
         <div class="col-md-6">
             <div class="package-rightpart">
@@ -23,25 +23,6 @@
                 </div>
                 <div class="group">
                     @Html.LabelFor(m => m.ITEM.PRICE, new { @class = "label" })
-                    @*<div class="col-md-4 col-sm-4">
-                            <ul>
-                                <li>Eggs</li>
-                                <li>Chicken</li>
-                                <li>Swordfish</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <ul>
-                                <li>Fruity</li>
-                                <li>Caffe</li>
-                                <li>Pasta</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <ul>
-                                <li>Chicken</li>
-                            </ul>
-                        </div>*@
                 </div>
                 <div class="group">
                     @*@Html.LabelFor(m => m.ITEMLIST.STATUS, new { @class = "label" })
