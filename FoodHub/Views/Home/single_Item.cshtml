@@ -5,52 +5,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    function AddToCart(itcd) {
 
-<div class="container">
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "Home")',
+            data: { "itemcd": itcd },
+            datatype: JSON,
+            success: function (data) {
+                if (data == "Success") {
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>
+
+
+
+<div class="container" style="padding-top:40px;">
     <div class="row">
         <div class="col-md-6 package-leftpart">
-            <img src="img/recipes/s1.jpg" alt="">
+            <img src=@Model.ITEM.IMG alt="">
         </div>
         <div class="col-md-6">
             <div class="package-rightpart">
                 <div class="package-title">
                     <h3>@Model.ITEM.ITEM_NM</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quo distinctio, cupiditate harum labore assumenda vitae velit officia, nihil id corporis iure. Mollitia qui illo, similique blanditiis! Reiciendis, nostrum, nobis?</p>
-                </div>
-                <div class="ingredients">
-                    <h4>Ingredients:</h4>
-                    <div class="col-md-4 col-sm-4">
-                        <ul>
-                            <li>Eggs</li>
-                            <li>Chicken</li>
-                            <li>Swordfish</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <ul>
-                            <li>Fruity</li>
-                            <li>Caffe</li>
-                            <li>Pasta</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <ul>
-                            <li>Chicken</li>
-                        </ul>
-                    </div>
+                    <p>@Model.ITEM.ITEM_DESC</p>
                 </div>
                 <div class="package-price row">
                     <div class="col-md-3 col-sm-3 price-pd">
-                        <h2 class="price-bold">$48.79</h2>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="regular-price">
-                            <span class="text">Regular Price</span><br>
-                            <span class="price-close">$49.67</span>
-                        </div>
+                        <h2 class="price-bold">₹ @Model.ITEM.PRICE </h2>
                     </div>
                     <div class="col-md-5 col-sm-5">
-                        <a href="#" class="btn btn-common"><i class="icon-cart"></i> Buy Now</a>
+                        <a onclick="AddToCart(@Model.ITEM.ITEM_CD)" style="cursor:pointer;" class="btn btn-common"><i class="icon-cart"></i> Buy Now</a>     @*ekta notification lagbe*@   
                     </div>
                 </div>
             </div>
@@ -58,7 +54,7 @@
     </div>
 </div>
 
-<section>
+<section>                                   @* Egulo dynamic khobe *@
     <div class="container">
         <div class="row">
             <div class="featured-carousel owl-carousel">

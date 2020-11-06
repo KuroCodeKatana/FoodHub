@@ -7,7 +7,7 @@
        
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Cart", "Home")',
+            url: '@Url.Action("AddToCart", "Home")',
             data: { "itemcd": itcd },
             datatype: JSON,
             success: function (data) {

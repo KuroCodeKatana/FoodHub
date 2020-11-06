@@ -126,7 +126,7 @@ namespace FoodHub.Controllers
         {
             return View();
         }
-        public JsonResult Cart(ItemEntry VE,int itemcd)
+        public JsonResult AddToCart(ItemEntry VE,int itemcd)
         {
             try
             {
@@ -179,12 +179,18 @@ namespace FoodHub.Controllers
         [Route("Home/Single_Item/{id?}")]
         public ActionResult Single_Item(int? id)
         {
+            //if (id == null) { } ekhane 404 page e redirect kora uchit
             ItemEntry VE = new ItemEntry();
             ITEM item = new ITEM();
             item = DB.ITEM.Where(a=>a.ITEM_CD==id).FirstOrDefault();
             VE.ITEM = item;
             return View(VE);
 
+        }
+
+
+        public ActionResult Cart() {
+            return View();
         }
         public string DocpathToBase64(string path)
         {
