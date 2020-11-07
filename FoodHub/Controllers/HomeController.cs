@@ -126,7 +126,7 @@ namespace FoodHub.Controllers
         {
             return View();
         }
-        public JsonResult AddToCart(ItemEntry VE,int itemcd)
+        public JsonResult AddToCart(ItemEntry VE, int itemcd)
         {
             try
             {
@@ -135,15 +135,15 @@ namespace FoodHub.Controllers
 
                 int uid = Convert.ToInt32(Session["USER_ID"].ToString());
                 var cartid = DB.CART.Where(a => a.USER_ID == uid && a.STATUS == "A").Select(b => b.CART_ID).ToList();
-                if(cartid!=null && cartid.Count() > 0)
+                if (cartid != null && cartid.Count() > 0)
                 {
                     int cart_id = cartid[0];
                     var Q = DB.CART_ITEM.Where(M => M.CART_ID == cart_id).FirstOrDefault();
-                    var max_qnty= DB.CART_ITEM.Where(M => M.CART_ID == cart_id).Max(b=>b.QNTY);
+                    var max_qnty = DB.CART_ITEM.Where(M => M.CART_ID == cart_id).Max(b => b.QNTY);
                     //Q.CI_ID =id ;
                     Q.CART_ID = cart_id;
                     Q.ITEM_CD = itemcd;
-                    Q.QNTY = max_qnty+1;
+                    Q.QNTY = max_qnty + 1;
                     DB.SaveChanges();
                 }
                 else
@@ -164,9 +164,9 @@ namespace FoodHub.Controllers
                     DB.CART_ITEM.Add(CARTITEM);
                     DB.SaveChanges();
                 }
-               
 
-               
+
+
 
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }
@@ -175,22 +175,57 @@ namespace FoodHub.Controllers
                 return Json(ex.Message + ex.InnerException, JsonRequestBehavior.AllowGet);
             }
         }
-       
+
         [Route("Home/Single_Item/{id?}")]
         public ActionResult Single_Item(int? id)
         {
             //if (id == null) { } ekhane 404 page e redirect kora uchit
             ItemEntry VE = new ItemEntry();
             ITEM item = new ITEM();
-            item = DB.ITEM.Where(a=>a.ITEM_CD==id).FirstOrDefault();
+            item = DB.ITEM.Where(a => a.ITEM_CD == id).FirstOrDefault();
             VE.ITEM = item;
             return View(VE);
 
         }
 
 
-        public ActionResult Cart() {
-            return View();
+        public ActionResult Cart()
+        {
+            CartEntry VE = new CartEntry();
+            int uid = Convert.ToInt32(Session["USER_ID"].ToString());
+            VE.CARTITEMLIST = (from a in DB.CART_ITEM
+                               join b in DB.CART on a.CART_ID equals b.CART_ID into x
+                               from b in x.DefaultIfEmpty()
+                               join c in DB.ITEM on a.ITEM_CD equals c.ITEM_CD
+                               where b.USER_ID == uid && b.STATUS == "A"
+                               select new CARTITEMLIST()
+                               {
+                                   ITEM_CD = a.ITEM_CD,
+                                   ITEM_NM = c.ITEM_NM,
+                                   PRICE = c.PRICE,
+                                   QNTY = a.QNTY,
+                                   IMG = c.IMG,
+                               }).ToList();
+
+            for (int i = 0; i <= VE.CARTITEMLIST.Count - 1; i++)
+            {
+                if (VE.CARTITEMLIST[i].IMG != null)
+                {
+                    string filenm = VE.CARTITEMLIST[i].IMG;
+                    string filepath = Server.MapPath("~/Content/ItemImage/" + filenm.ToString());
+                    VE.CARTITEMLIST[i].IMG_FILE = DocpathToBase64(filepath);
+                    var mimetype = MimeMapping.GetMimeMapping(filenm);
+                    var mimeurl = "data:" + mimetype + ";base64,";
+                    VE.CARTITEMLIST[i].IMG_FILE = (mimeurl + VE.CARTITEMLIST[i].IMG_FILE);
+                    //VE.ITEMLIST[i].IMG_FILE = "~/Content/ItemImage/" + VE.ITEMLIST[i].IMG;
+                }
+                double price = (VE.CARTITEMLIST[i].QNTY * Convert.ToDouble(VE.CARTITEMLIST[i].PRICE));
+                VE.CARTITEMLIST[i].GSTAMT = ((price) * 18) / 100;
+                VE.CARTITEMLIST[i].TOTALPRICE = price + VE.CARTITEMLIST[i].GSTAMT;
+
+            }
+
+            return View(VE);
         }
         public string DocpathToBase64(string path)
         {
