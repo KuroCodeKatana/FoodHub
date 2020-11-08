@@ -43,7 +43,7 @@
                                 @Html.HiddenFor(a => a.CARTITEMLIST[Q].ITEM_CD)
                             </div>
                             <div class="col col-price col-numeric align-center ">
-                                <p>Rs.@Model.CARTITEMLIST[Q].PRICE</p>
+                                <p>₹ @Model.CARTITEMLIST[Q].PRICE</p>
                             </div>
 
                             <div class="col col-qty layout-inline">
@@ -53,10 +53,10 @@
                             </div>
 
                             <div class="col col-vat col-numeric">
-                                <p>Rs.@Model.CARTITEMLIST[Q].GSTAMT</p>
+                                <p>₹ @Model.CARTITEMLIST[Q].GSTAMT</p>
                             </div>
                             <div class="col col-total col-numeric">
-                                <p>Rs.@Model.CARTITEMLIST[Q].TOTALPRICE</p>
+                                <p>₹ @Model.CARTITEMLIST[Q].TOTALPRICE</p>
                             </div>
                         </div>
                     }
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="col col-price col-numeric align-center ">
-                                <p>Rs.@Model.CARTITEMLIST[Q].PRICE</p>
+                                <p>₹ @Model.CARTITEMLIST[Q].PRICE</p>
                             </div>
 
                             <div class="col col-qty  layout-inline">
@@ -83,10 +83,10 @@
                             </div>
 
                             <div class="col col-vat col-numeric">
-                                <p>Rs.@Model.CARTITEMLIST[Q].GSTAMT</p>
+                                <p>₹ @Model.CARTITEMLIST[Q].GSTAMT</p>
                             </div>
                             <div class="col col-total col-numeric">
-                                <p>Rs.@Model.CARTITEMLIST[Q].TOTALPRICE</p>
+                                <p>₹ @Model.CARTITEMLIST[Q].TOTALPRICE</p>
                             </div>
 
                         </div>
@@ -96,21 +96,21 @@
             <div class="tf">
                 <div class="row layout-inline">
                     <div class="col">
-                        <p>GST</p>
-                    </div>
-                    <div class="col">0</div>
-                </div>
-                <div class="row layout-inline">
-                    <div class="col">
-                        <p>Shipping</p>
-                    </div>
-                    <div class="col">0</div>
-                </div>
-                <div class="row layout-inline">
-                    <div class="col">
                         <p>Total</p>
                     </div>
-                    <div class="col">0</div>
+                    <div class="col"><p>@ViewBag.total</p></div>
+                </div>
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>GST</p>
+                    </div>
+                    <div class="col"><p>@ViewBag.totalgst</p></div>
+                </div>
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>Total Amount</p>
+                    </div>
+                    <div class="col"><p>@ViewBag.totalamt</p></div>
                 </div>
             </div>
         </div>

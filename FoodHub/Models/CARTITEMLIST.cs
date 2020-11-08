@@ -12,9 +12,9 @@ namespace FoodHub.Models
         public int ITEM_CD { get; set; }
         public string ITEM_NM { get; set; }
         public decimal PRICE { get; set; }
-        public double QNTY { get; set; }
-        public double GSTAMT { get; set; }
-        public double TOTALPRICE { get; set; }
+        public String QNTY { get; set; }
+        public String GSTAMT { get; set; }
+        public String TOTALPRICE { get; set; }
         public int CART_ID { get; set; }
         public string IMG { get; set; }
 

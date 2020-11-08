@@ -138,13 +138,24 @@ namespace FoodHub.Controllers
                 if (cartid != null && cartid.Count() > 0)
                 {
                     int cart_id = cartid[0];
-                    var Q = DB.CART_ITEM.Where(M => M.CART_ID == cart_id).FirstOrDefault();
-                    var max_qnty = DB.CART_ITEM.Where(M => M.CART_ID == cart_id).Max(b => b.QNTY);
-                    //Q.CI_ID =id ;
-                    Q.CART_ID = cart_id;
-                    Q.ITEM_CD = itemcd;
-                    Q.QNTY = max_qnty + 1;
-                    DB.SaveChanges();
+                    var Q = DB.CART_ITEM.Where(M => M.CART_ID == cart_id && M.ITEM_CD == itemcd).FirstOrDefault();
+                    if (Q != null)
+                    {
+                        var max_qnty = Q.QNTY;
+                        Q.ITEM_CD = itemcd;
+                        Q.QNTY = max_qnty + 1;
+                        DB.SaveChanges();
+                    }
+                    else
+                    {
+                        CART_ITEM CARTITEM = new CART_ITEM();
+                        CARTITEM.CI_ID = id;
+                        CARTITEM.CART_ID = cart_id;
+                        CARTITEM.ITEM_CD = itemcd;
+                        CARTITEM.QNTY = 1;
+                        DB.CART_ITEM.Add(CARTITEM);
+                        DB.SaveChanges();
+                    }
                 }
                 else
                 {
@@ -203,10 +214,11 @@ namespace FoodHub.Controllers
                                    ITEM_CD = a.ITEM_CD,
                                    ITEM_NM = c.ITEM_NM,
                                    PRICE = c.PRICE,
-                                   QNTY = a.QNTY,
+                                   QNTY = a.QNTY.ToString(),
                                    IMG = c.IMG,
                                }).ToList();
-
+            double total = 0;
+            double totalgst = 0;
             for (int i = 0; i <= VE.CARTITEMLIST.Count - 1; i++)
             {
                 if (VE.CARTITEMLIST[i].IMG != null)
@@ -219,12 +231,15 @@ namespace FoodHub.Controllers
                     VE.CARTITEMLIST[i].IMG_FILE = (mimeurl + VE.CARTITEMLIST[i].IMG_FILE);
                     //VE.ITEMLIST[i].IMG_FILE = "~/Content/ItemImage/" + VE.ITEMLIST[i].IMG;
                 }
-                double price = (VE.CARTITEMLIST[i].QNTY * Convert.ToDouble(VE.CARTITEMLIST[i].PRICE));
-                VE.CARTITEMLIST[i].GSTAMT = ((price) * 18) / 100;
-                VE.CARTITEMLIST[i].TOTALPRICE = price + VE.CARTITEMLIST[i].GSTAMT;
-
+                double price = Convert.ToDouble(VE.CARTITEMLIST[i].QNTY) * Convert.ToDouble(VE.CARTITEMLIST[i].PRICE);
+                VE.CARTITEMLIST[i].GSTAMT = ((Convert.ToDouble(VE.CARTITEMLIST[i].PRICE)) * 0.18).ToString("F2");
+                VE.CARTITEMLIST[i].TOTALPRICE = price.ToString("F2");
+                total += Convert.ToDouble(VE.CARTITEMLIST[i].TOTALPRICE);
+                totalgst += Convert.ToDouble(VE.CARTITEMLIST[i].GSTAMT);
             }
-
+            ViewBag.totalgst = (total * 0.18).ToString("C2");
+            ViewBag.total = total.ToString("C2");
+            ViewBag.totalamt = (total + (total*0.18)).ToString("C2");
             return View(VE);
         }
         public string DocpathToBase64(string path)
