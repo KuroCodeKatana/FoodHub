@@ -8,6 +8,55 @@
 @section AddToHead{
     <link href="~/Content/cart.css" rel="stylesheet" type="text/css" />
 }
+<script>
+    function QntyUpdate(index,btnid) {
+        var itcd = $("#ITEM_CD").val();
+        if (btnid == "LESS") {
+            var QNTY = $("#QNTY_" + index).val();
+            T_QNTY = parsefloat(QNTY) - 1;
+            if (T_QNTY < 0) {
+                return false;
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("UpdateQnty", "Home")',
+            data: {"ITCD": itcd, "BTNID": btnid },
+            datatype: JSON,
+            success: function (data) {
+                if (data != "0") {
+                    $("#QNTY_" + index).val(data);
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+    function CartRemove(index,btnid) {
+        var itcd = $("#ITEM_CD").val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveCart", "Home")',
+            data: { "ITCD": itcd},
+            datatype: JSON,
+            success: function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+</script>
 <div class="customcard" style="display:flex; padding-top:40px;">
     <div class="container" style="justify-content:center;align-self:center;">
         <div class="heading">
@@ -40,16 +89,16 @@
                                 <img src="@Model.CARTITEMLIST[Q].IMG_FILE" id="img">
                                 <p>@Model.CARTITEMLIST[Q].ITEM_NM</p>
                                 @Html.HiddenFor(a => a.CARTITEMLIST[Q].CART_ID)
-                                @Html.HiddenFor(a => a.CARTITEMLIST[Q].ITEM_CD)
+                                @Html.HiddenFor(a => a.CARTITEMLIST[Q].ITEM_CD, new { id = "ITEM_CD_" + Q })
                             </div>
                             <div class="col col-price col-numeric align-center ">
                                 <p>₹ @Model.CARTITEMLIST[Q].PRICE</p>
                             </div>
 
                             <div class="col col-qty layout-inline">
-                                <a href="#" class="qty qty-minus">-</a>
-                                <input type="numeric" value=@Model.CARTITEMLIST[Q].QNTY />
-                                <a href="#" class="qty qty-plus">+</a>
+                                <a onclick="QntyUpdate(@Q,'LESS')" style="cursor:pointer;" class="qty qty-minus">-</a>
+                                <input type="numeric" readonly="readonly" value=@Model.CARTITEMLIST[Q].QNTY id="QNTY_" @Q />
+                                <a onclick="QntyUpdate(@Q,'ADD')" style="cursor:pointer;" class="qty qty-plus">+</a>
                             </div>
 
                             <div class="col col-vat col-numeric">
@@ -69,7 +118,7 @@
                                 <img src="@Model.CARTITEMLIST[Q].IMG_FILE" id="img">
                                 <p>@Model.CARTITEMLIST[Q].ITEM_NM</p>
                                 @Html.HiddenFor(a => a.CARTITEMLIST[Q].CART_ID)
-                                @Html.HiddenFor(a => a.CARTITEMLIST[Q].ITEM_CD)
+                                @Html.HiddenFor(a => a.CARTITEMLIST[Q].ITEM_CD, new { id = "ITEM_CD_" + Q })
                             </div>
 
                             <div class="col col-price col-numeric align-center ">
@@ -77,9 +126,9 @@
                             </div>
 
                             <div class="col col-qty  layout-inline">
-                                <a href="#" class="qty qty-minus ">-</a>
-                                <input type="numeric" value=@Model.CARTITEMLIST[Q].QNTY />
-                                <a href="#" class="qty qty-plus">+</a>
+                                <a onclick="QntyUpdate(@Q,'LESS')" style="cursor:pointer;" class="qty qty-minus">-</a>
+                                <input type="numeric" readonly="readonly" value=@Model.CARTITEMLIST[Q].QNTY id="QNTY_" @Q />
+                                <a onclick="QntyUpdate(@Q,'ADD')" style="cursor:pointer;" class="qty qty-plus">+</a>
                             </div>
 
                             <div class="col col-vat col-numeric">

@@ -100,7 +100,7 @@ namespace FoodHub.Controllers
                     //VE.ITEMLIST[i].IMG_FILE = "~/Content/ItemImage/" + VE.ITEMLIST[i].IMG;
                 }
             }
-
+            CartUpdate();
             return View(VE);
         }
         public ActionResult Menu()
@@ -198,8 +198,6 @@ namespace FoodHub.Controllers
             return View(VE);
 
         }
-
-
         public ActionResult Cart()
         {
             CartEntry VE = new CartEntry();
@@ -239,7 +237,8 @@ namespace FoodHub.Controllers
             }
             ViewBag.totalgst = (total * 0.18).ToString("C2");
             ViewBag.total = total.ToString("C2");
-            ViewBag.totalamt = (total + (total*0.18)).ToString("C2");
+            ViewBag.totalamt = (total + (total * 0.18)).ToString("C2");
+            CartUpdate();
             return View(VE);
         }
         public string DocpathToBase64(string path)
@@ -255,6 +254,64 @@ namespace FoodHub.Controllers
             {
                 return "";
             }
+        }
+        public JsonResult UpdateQnty(int ITCD, string BTNID)
+        {
+            int uid = Convert.ToInt32(Session["USER_ID"].ToString());
+
+            var data = (from a in DB.CART
+                        join b in DB.CART_ITEM on a.CART_ID equals b.CART_ID
+                        where a.USER_ID == uid && b.ITEM_CD == ITCD
+                        select new { b.QNTY, b.CART_ID }
+                    ).FirstOrDefault();
+            var Q = DB.CART_ITEM.Where(M => M.CART_ID == data.CART_ID && M.ITEM_CD == ITCD).FirstOrDefault();
+            int max_qnty = 0;
+            if (Q != null)
+            {
+
+                if (BTNID == "ADD")
+                {
+                    max_qnty = Q.QNTY + 1;
+                }
+                else
+                {
+                    max_qnty = Q.QNTY - 1;
+                }
+                Q.QNTY = max_qnty;
+                DB.SaveChanges();
+            }
+            return Json(max_qnty.ToString(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult RemoveCart(int ITCD)
+        {
+            int uid = Convert.ToInt32(Session["USER_ID"].ToString());
+
+            var data = (from a in DB.CART
+                        join b in DB.CART_ITEM on a.CART_ID equals b.CART_ID
+                        where a.USER_ID == uid && b.ITEM_CD == ITCD
+                        select new { b.CART_ID }
+                    ).FirstOrDefault();
+            var cart_count = DB.CART_ITEM.Where(M => M.CART_ID == data.CART_ID && M.ITEM_CD != ITCD).ToList();
+            var Q = DB.CART_ITEM.Where(M => M.CART_ID == data.CART_ID && M.ITEM_CD == ITCD).FirstOrDefault();
+            DB.CART_ITEM.Remove(Q);
+            DB.SaveChanges();
+            if (cart_count != null && cart_count.Count() == 0)
+            {
+                var R = DB.CART.Where(M => M.CART_ID == data.CART_ID && M.USER_ID == uid).FirstOrDefault();
+                DB.CART.Remove(R);
+                DB.SaveChanges();
+            }
+            return Json("1", JsonRequestBehavior.AllowGet);
+        }
+
+        public void CartUpdate()
+        {
+            int uid = Convert.ToInt32(Session["USER_ID"].ToString());
+            ViewBag.CartCount = (from a in DB.CART
+                                 join b in DB.CART_ITEM on a.CART_ID equals b.CART_ID
+                                 where a.USER_ID == uid && a.STATUS == "A"
+                                 select new { b.ITEM_CD }
+                    ).Distinct().Count();
         }
 
     }
