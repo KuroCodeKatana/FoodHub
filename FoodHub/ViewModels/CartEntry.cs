@@ -9,5 +9,6 @@ namespace FoodHub.ViewModels
     public class CartEntry
     {
         public List<CARTITEMLIST> CARTITEMLIST { get; set; }
+        public int CART_ID { get; set; }
     }
 }

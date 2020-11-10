@@ -9,15 +9,10 @@
     <link href="~/Content/cart.css" rel="stylesheet" type="text/css" />
 }
 <script>
-    function QntyUpdate(index,btnid) {
-        var itcd = $("#ITEM_CD").val();
-        if (btnid == "LESS") {
-            var QNTY = $("#QNTY_" + index).val();
-            T_QNTY = parsefloat(QNTY) - 1;
-            if (T_QNTY < 0) {
-                return false;
-            }
-        }
+    function QntyUpdate(index, btnid) {
+        debugger;
+        var itcd = $("#ITEM_CD_" + index).val();
+
         $.ajax({
             type: "POST",
             url: '@Url.Action("UpdateQnty", "Home")',
@@ -26,6 +21,16 @@
             success: function (data) {
                 if (data != "0") {
                     $("#QNTY_" + index).val(data);
+                    if (btnid == "LESS" && data == "1") {
+                        document.getElementById("minus_" + index).disabled = true;
+                    }
+                    else if (btnid == "ADD" && data == "10") {
+                        document.getElementById("plus_" + index).disabled = true;
+                    }
+                    else {
+                        document.getElementById("minus_" + index).disabled = false;
+                        document.getElementById("plus_" + index).disabled = false;
+                    }
                 }
                 else {
                     alert(data);
@@ -36,13 +41,32 @@
             }
         });
     }
-    function CartRemove(index,btnid) {
-        var itcd = $("#ITEM_CD").val();
+    function CartRemove(index) {
+        var itcd = $("#ITEM_CD_" + index).val();
         $.ajax({
             type: "POST",
             url: '@Url.Action("RemoveCart", "Home")',
             data: { "ITCD": itcd},
             datatype: JSON,
+            success: function (data) {
+                if (data == "1") {
+                    location.reload();
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+    function PlaceOrder() {
+        var cartid = $("#CART_ID").val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("OrderPlace", "Home")',
+            data: { "CARTID": cartid},
             success: function (data) {
                 if (data == "1") {
                     location.reload();
@@ -96,9 +120,9 @@
                             </div>
 
                             <div class="col col-qty layout-inline">
-                                <a onclick="QntyUpdate(@Q,'LESS')" style="cursor:pointer;" class="qty qty-minus">-</a>
-                                <input type="numeric" readonly="readonly" value=@Model.CARTITEMLIST[Q].QNTY id="QNTY_" @Q />
-                                <a onclick="QntyUpdate(@Q,'ADD')" style="cursor:pointer;" class="qty qty-plus">+</a>
+                                <a onclick="QntyUpdate(@Q,'LESS')" style="cursor:pointer;" id="minus_@Q" class="qty qty-minus">-</a>
+                                <input type="numeric" readonly="readonly" value=@Model.CARTITEMLIST[Q].QNTY id="QNTY_@Q" />
+                                <a onclick="QntyUpdate(@Q,'ADD')" style="cursor:pointer;" id="plus_@Q" class="qty qty-plus">+</a>
                             </div>
 
                             <div class="col col-vat col-numeric">
@@ -106,6 +130,7 @@
                             </div>
                             <div class="col col-total col-numeric">
                                 <p>₹ @Model.CARTITEMLIST[Q].TOTALPRICE</p>
+                                <button class="btn-sm btn-danger" style="float:right;" title="Remove" onclick="CartRemove(@Q)"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>
                     }
@@ -126,9 +151,9 @@
                             </div>
 
                             <div class="col col-qty  layout-inline">
-                                <a onclick="QntyUpdate(@Q,'LESS')" style="cursor:pointer;" class="qty qty-minus">-</a>
-                                <input type="numeric" readonly="readonly" value=@Model.CARTITEMLIST[Q].QNTY id="QNTY_" @Q />
-                                <a onclick="QntyUpdate(@Q,'ADD')" style="cursor:pointer;" class="qty qty-plus">+</a>
+                                <a onclick="QntyUpdate(@Q,'LESS')" style="cursor:pointer;" id="minus_@Q" class="qty qty-minus">-</a>
+                                <input type="numeric" readonly="readonly" value=@Model.CARTITEMLIST[Q].QNTY id="QNTY_@Q" />
+                                <a onclick="QntyUpdate(@Q,'ADD')" style="cursor:pointer;" id="plus_@Q" class="qty qty-plus">+</a>
                             </div>
 
                             <div class="col col-vat col-numeric">
@@ -136,6 +161,7 @@
                             </div>
                             <div class="col col-total col-numeric">
                                 <p>₹ @Model.CARTITEMLIST[Q].TOTALPRICE</p>
+                                <button class="btn-sm btn-danger" style="float:right;" title="Remove" onclick="CartRemove(@Q)"><i class="fa fa-trash"></i></button>
                             </div>
 
                         </div>
@@ -163,8 +189,8 @@
                 </div>
             </div>
         </div>
-
-        <a href="#" class="btn btn-update">Checkout</a>
+        @Html.HiddenFor(a => a.CART_ID, new { id = "CART_ID" })
+        <a class="btn btn-update" onclick="PlaceOrder()">Checkout</a>
 
     </div>
 </div>

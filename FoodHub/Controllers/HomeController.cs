@@ -214,7 +214,13 @@ namespace FoodHub.Controllers
                                    PRICE = c.PRICE,
                                    QNTY = a.QNTY.ToString(),
                                    IMG = c.IMG,
+                                   CART_ID = a.CART_ID,
                                }).ToList();
+            if (VE.CARTITEMLIST != null && VE.CARTITEMLIST.Count() > 0)
+            {
+                VE.CART_ID = VE.CARTITEMLIST[0].CART_ID;
+            }
+
             double total = 0;
             double totalgst = 0;
             for (int i = 0; i <= VE.CARTITEMLIST.Count - 1; i++)
@@ -255,7 +261,7 @@ namespace FoodHub.Controllers
                 return "";
             }
         }
-        public JsonResult UpdateQnty(int ITCD, string BTNID)
+        public JsonResult UpdateQnty(int ITCD, string BTNID, int CARTID)
         {
             int uid = Convert.ToInt32(Session["USER_ID"].ToString());
 
@@ -303,7 +309,6 @@ namespace FoodHub.Controllers
             }
             return Json("1", JsonRequestBehavior.AllowGet);
         }
-
         public void CartUpdate()
         {
             int uid = Convert.ToInt32(Session["USER_ID"].ToString());
@@ -312,6 +317,28 @@ namespace FoodHub.Controllers
                                  where a.USER_ID == uid && a.STATUS == "A"
                                  select new { b.ITEM_CD }
                     ).Distinct().Count();
+        }
+        public ActionResult OrderPlace(ItemEntry VE, int CARTID)
+        {
+            int uid = Convert.ToInt32(Session["USER_ID"].ToString());
+            Random rnd = new Random();
+            int id = rnd.Next(0, 9999);
+            ORDER ORDER_ITM = new ORDER();
+            ORDER_ITM.ORDER_ID = id;
+            ORDER_ITM.USER_ID = uid;
+            ORDER_ITM.CART_ID = CARTID;
+            ORDER_ITM.AMOUNT =Convert.ToDecimal(ViewBag.totalamt);
+            ORDER_ITM.START_TIME = System.DateTime.Now.Date;
+            ORDER_ITM.STATUS = "Order";
+            ORDER_ITM.REMARKS = "Order Sucessfull";
+            DB.ORDER.Add(ORDER_ITM);
+            DB.SaveChanges();
+
+            var Q = DB.CART.Where(M => M.CART_ID == CARTID && M.USER_ID == uid).FirstOrDefault();
+            Q.STATUS = "O";
+            DB.SaveChanges();
+
+            return Content("1");
         }
 
     }
